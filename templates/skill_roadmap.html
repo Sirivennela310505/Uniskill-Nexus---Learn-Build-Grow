@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{ skill }} Roadmap</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="sidebar">
+  <a href="/skills">⬅ Back to Skills</a>
+</div>
+
+<div class="content">
+  <h1>🛣 {{ skill }} Roadmap</h1>
+
+  <div class="roadmap-box">
+    <div class="rm start">START HERE</div>
+
+    {% for step in roadmap %}
+      <div class="rm step">{{ step }}</div>
+    {% endfor %}
+
+    <div class="rm end">READY FOR PROJECTS 🎯</div>
+  </div>
+</div>
+
+</body>
+</html>

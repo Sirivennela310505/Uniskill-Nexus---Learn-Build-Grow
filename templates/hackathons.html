@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hackathons | UniSkill Nexus</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #e9ecef; /* ash background */
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 90px auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            color: #555;
+            margin-bottom: 50px;
+            font-size: 16px;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: #ffb4a2; /* peach */
+            width: 260px;
+            padding: 35px 25px;
+            border-radius: 18px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+
+        .card p {
+            font-size: 15px;
+            color: #333;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>🏆 Hackathons</h1>
+        <p class="subtitle">Choose a path and start your hackathon journey</p>
+
+        <div class="cards">
+
+            <!-- BEST IDEAS -->
+            <div class="card" onclick="location.href='/hackathons/best'">
+                <h3>🚀 Best Hackathon Ideas</h3>
+                <p>Winning-level project ideas with full guidance</p>
+            </div>
+
+            <!-- BEGINNER FRIENDLY -->
+            <div class="card" onclick="location.href='/hackathons/beginner'">
+                <h3>🌱 Beginner Friendly</h3>
+                <p>Easy ideas to start your first hackathon confidently</p>
+            </div>
+
+            <!-- ONGOING -->
+            <div class="card" onclick="location.href='/hackathons/ongoing'">
+                <h3>⏳ Ongoing Hackathons</h3>
+                <p>Find hackathons that are live and accepting applications</p>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

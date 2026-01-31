@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ skill }} | UniSkill Nexus</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <a href="/skills">⬅ Back to Skills</a>
+</div>
+
+<div class="content">
+
+    <h1>🚀 {{ skill }} – Learning Hub</h1>
+    <p class="subtitle">Choose how you want to learn {{ skill }}</p>
+
+    <!-- ONLY BUTTONS ARE HERE -->
+    <div class="skill-actions">
+
+        <a href="/skills/{{ skill|lower }}/roadmap" class="action-card">
+            🛣<br><b>Roadmap</b>
+            <span>Start → Learn → Master</span>
+        </a>
+
+        <a href="/skills/{{ skill|lower }}/resources" class="action-card">
+            📚<br><b>Resources</b>
+            <span>Videos & Materials</span>
+        </a>
+
+        <a href="/skills/{{ skill|lower }}/quiz" class="action-card">
+            🧠<br><b>Quiz</b>
+            <span>Test your knowledge</span>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

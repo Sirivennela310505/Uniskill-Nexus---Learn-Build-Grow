@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ skill }} Quiz | UniSkill Nexus</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .question {
+            background: #fff;
+            padding: 22px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            font-size: 18px;
+        }
+
+        .options label {
+            display: block;
+            margin: 8px 0;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 14px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background: #ffb3a7;
+            margin: 15px;
+        }
+
+        button:hover {
+            background: #ff9a8a;
+        }
+
+        #resultPage {
+            display: none;
+            text-align: center;
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        .progress-box {
+            width: 80%;
+            background: #ddd;
+            margin: 25px auto;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 30px;
+            width: 0%;
+            background: #4caf50;
+            color: white;
+            font-size: 16px;
+            line-height: 30px;
+        }
+
+        #answers {
+            text-align: left;
+            margin-top: 30px;
+        }
+    </style>
+
+    <script>
+        const quizzes = {
+
+            python: [
+                ["Keyword for function?", ["def","fun","define","function"], "def"],
+                ["Immutable datatype?", ["List","Tuple","Set","Dict"], "Tuple"],
+                ["Length function?", ["len()","size()","count()","length()"], "len()"],
+                ["Loop for sequence?", ["for","while","do","if"], "for"],
+                ["Package installer?", ["pip","pkg","install","get"], "pip"],
+                ["Comment symbol?", ["#","//","/*","--"], "#"],
+                ["Key-value structure?", ["List","Set","Tuple","Dictionary"], "Dictionary"],
+                ["File extension?", [".py",".pt",".p",".python"], ".py"],
+                ["None means?", ["0","False","Null","None"], "None"],
+                ["Indentation used for?", ["Blocks","Speed","Errors","Loops"], "Blocks"]
+            ],
+
+            java: [
+                ["Java is?", ["OOP","Scripting","Markup","Procedure"], "OOP"],
+                ["Entry method?", ["main()","start()","run()","init()"], "main()"],
+                ["Create object?", ["new","make","create","object"], "new"],
+                ["Inheritance keyword?", ["extends","implements","super","this"], "extends"],
+                ["Primitive datatype?", ["String","Array","int","Object"], "int"],
+                ["Java file extension?", [".java",".class",".js",".jav"], ".java"],
+                ["Supports pointers?", ["Yes","No","Sometimes","Only arrays"], "No"],
+                ["Package keyword?", ["package","import","include","lib"], "package"],
+                ["Platform independent because?", ["JVM","Compiler","OS","CPU"], "JVM"],
+                ["Not OOP concept?", ["Compilation","Inheritance","Polymorphism","Encapsulation"], "Compilation"]
+            ],
+
+            web: [
+                ["HTML full form?", ["Hyper Text Markup Language","High Text ML","Hyperlinks ML","None"], "Hyper Text Markup Language"],
+                ["CSS used for?", ["Styling","Logic","DB","Hosting"], "Styling"],
+                ["JS runs in?", ["Browser","Server","DB","OS"], "Browser"],
+                ["Link tag?", ["<a>","<link>","<href>","<url>"], "<a>"],
+                ["Responsive design?", ["Media queries","Frames","Tables","Forms"], "Media queries"],
+                ["CSS framework?", ["Bootstrap","Flask","Django","SQL"], "Bootstrap"],
+                ["HTML heading?", ["<h1>","<p>","<title>","<head>"], "<h1>"],
+                ["JS variable?", ["let","var","both","int"], "both"],
+                ["Frontend language?", ["HTML","SQL","Python","Java"], "HTML"],
+                ["Used for DOM?", ["JavaScript","CSS","HTML","SQL"], "JavaScript"]
+            ],
+
+            ai: [
+                ["AI stands for?", ["Artificial Intelligence","Auto Info","Advanced Internet","None"], "Artificial Intelligence"],
+                ["AI language?", ["Python","HTML","CSS","SQL"], "Python"],
+                ["ML is subset of?", ["AI","DB","OS","Web"], "AI"],
+                ["Used for prediction?", ["Model","Loop","Array","HTML"], "Model"],
+                ["Supervised learning uses?", ["Labeled data","Random data","No data","Images only"], "Labeled data"],
+                ["Common ML library?", ["Scikit-learn","Bootstrap","Flask","React"], "Scikit-learn"],
+                ["AI brain inspired by?", ["Human brain","CPU","RAM","Internet"], "Human brain"],
+                ["Deep learning uses?", ["Neural Networks","Arrays","Tables","Files"], "Neural Networks"],
+                ["AI project example?", ["Chatbot","Calculator","Notepad","Clock"], "Chatbot"],
+                ["AI used in?", ["Self-driving","Manual work","Typewriter","Books"], "Self-driving"]
+            ],
+
+            datascience: [
+                ["Data science uses?", ["Data","Paint","Music","Drawing"], "Data"],
+                ["Main language?", ["Python","HTML","CSS","PHP"], "Python"],
+                ["Used for data analysis?", ["Pandas","Flask","React","Bootstrap"], "Pandas"],
+                ["Graph library?", ["Matplotlib","SQL","OS","RAM"], "Matplotlib"],
+                ["Data cleaning means?", ["Remove errors","Add data","Delete DB","Encrypt"], "Remove errors"],
+                ["Visualization helps?", ["Understanding","Hiding","Deleting","Confusing"], "Understanding"],
+                ["ML used in DS?", ["Yes","No","Sometimes","Never"], "Yes"],
+                ["Dataset source?", ["Kaggle","Google Docs","Paint","Word"], "Kaggle"],
+                ["CSV stands for?", ["Comma Separated Values","Column Save","Common Style","None"], "Comma Separated Values"],
+                ["DS output?", ["Insights","Errors","Music","Design"], "Insights"]
+            ],
+
+            sql: [
+                ["SQL full form?", ["Structured Query Language","Simple Query","Sequential Logic","None"], "Structured Query Language"],
+                ["Used for?", ["Database","Design","AI","Games"], "Database"],
+                ["Command to view data?", ["SELECT","SHOW","GET","OPEN"], "SELECT"],
+                ["Insert data?", ["INSERT","ADD","PUT","NEW"], "INSERT"],
+                ["Delete record?", ["DELETE","REMOVE","DROP","CLEAR"], "DELETE"],
+                ["Update data?", ["UPDATE","MODIFY","CHANGE","EDIT"], "UPDATE"],
+                ["Primary key?", ["Unique","Duplicate","Null","Random"], "Unique"],
+                ["Join used for?", ["Combine tables","Delete tables","Create DB","Backup"], "Combine tables"],
+                ["SQL table has?", ["Rows & Columns","Files","Images","Classes"], "Rows & Columns"],
+                ["Popular DB?", ["MySQL","Python","HTML","CSS"], "MySQL"]
+            ]
+        };
+
+        let skill = "{{ skill|lower }}";
+        let quiz = quizzes[skill];
+
+        function loadQuiz() {
+            let box = document.getElementById("quizBox");
+            quiz.forEach((q,i)=>{
+                let html = `<div class="question">
+                    <b>${i+1}. ${q[0]}</b>
+                    <div class="options">`;
+                q[1].forEach(opt=>{
+                    html += `<label>
+                        <input type="radio" name="q${i}" value="${opt}"> ${opt}
+                    </label>`;
+                });
+                html += `</div></div>`;
+                box.innerHTML += html;
+            });
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            quiz.forEach((q,i)=>{
+                let sel = document.querySelector(`input[name="q${i}"]:checked`);
+                if(sel && sel.value === q[2]) score++;
+            });
+
+            let percent = Math.round((score / quiz.length) * 100);
+
+            document.getElementById("quizSection").style.display = "none";
+            document.getElementById("resultPage").style.display = "block";
+
+            let bar = document.getElementById("progress");
+            let width = 0;
+            let anim = setInterval(()=>{
+                if(width >= percent){
+                    clearInterval(anim);
+                } else {
+                    width++;
+                    bar.style.width = width + "%";
+                    bar.innerText = width + "%";
+                }
+            }, 20);
+        }
+
+        function viewAnswers() {
+            let html = "";
+            quiz.forEach((q,i)=>{
+                html += `<p><b>${i+1}. ${q[0]}</b><br>✔ ${q[2]}</p>`;
+            });
+            document.getElementById("answers").innerHTML = html;
+        }
+
+        window.onload = loadQuiz;
+    </script>
+</head>
+
+<body>
+
+<h1>{{ skill }} Skill Quiz</h1>
+
+<div id="quizSection">
+    <div id="quizBox"></div>
+    <center>
+        <button onclick="submitQuiz()">Submit Quiz</button>
+    </center>
+</div>
+
+<div id="resultPage">
+    <h2>Your Score</h2>
+
+    <div class="progress-box">
+        <div class="progress-bar" id="progress">0%</div>
+    </div>
+
+    <button onclick="viewAnswers()">View Correct Answers</button>
+    <div id="answers"></div>
+</div>
+
+</body>
+</html>

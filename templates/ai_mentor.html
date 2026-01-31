@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Mentor | UniSkill Nexus</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="content">
+
+  <h1>🤖 AI Mentor</h1>
+  <p class="subtitle">Ask me what to learn, I’ll guide you</p>
+
+  <form method="POST">
+    <input 
+      type="text" 
+      name="question"
+      placeholder="Eg: I want to learn Python / Suggest projects"
+      class="search-bar"
+      required
+    >
+    <br><br>
+    <button class="primary-btn">Ask Mentor</button>
+  </form>
+  <div class="suggestions">
+    <p>Suggested questions:</p>
+
+    <button type="button" onclick="fillQuestion('I feel demotivated')">
+        😔 I feel demotivated
+    </button>
+
+    <button type="button" onclick="fillQuestion('I want to learn Python')">
+        🐍 I want to learn Python
+    </button>
+
+    <button type="button" onclick="fillQuestion('How to start AI and ML')">
+        🤖 How to start AI / ML
+    </button>
+
+    <button type="button" onclick="fillQuestion('Web development roadmap')">
+        🌐 Web development roadmap
+    </button>
+
+    <button type="button" onclick="fillQuestion('I am confused about my career')">
+        🎯 Career confusion
+    </button>
+</div>
+
+
+  {% if response %}
+    <div class="mentor-response">
+      <h3>📌 Mentor Advice</h3>
+      <p>{{ response }}</p>
+    </div>
+  {% endif %}
+
+</div>
+<script>
+function fillQuestion(text) {
+    document.querySelector('input[name="question"]').value = text;
+}
+</script>
+
+
+</body>
+</html>

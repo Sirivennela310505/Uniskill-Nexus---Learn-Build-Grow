@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Projects | UniSkill Nexus</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="content">
+
+  <h1>🚀 Explore Projects</h1>
+  <p class="subtitle">Search and select a project to start building</p>
+
+  <!-- SEARCH BAR -->
+  <input 
+    type="text" 
+    id="projectSearch" 
+    placeholder="🔍 Search project (AI, Web, Python...)"
+    class="search-bar"
+    onkeyup="filterProjects()"
+  >
+
+  <!-- PROJECT GRID -->
+  <div class="projects-grid" id="projectGrid">
+    {% for project in projects %}
+      <a href="/projects/{{ project.id }}" class="project-card">
+        <h3>{{ project.title }}</h3>
+      </a>
+    {% endfor %}
+  </div>
+
+</div>
+
+<script>
+function filterProjects() {
+  let input = document.getElementById("projectSearch").value.toLowerCase();
+  let cards = document.getElementsByClassName("project-card");
+
+  for (let i = 0; i < cards.length; i++) {
+    let text = cards[i].innerText.toLowerCase();
+    cards[i].style.display = text.includes(input) ? "block" : "none";
+  }
+}
+</script>
+
+</body>
+</html>

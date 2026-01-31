@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f5f7fb;
+}
+
+.motivation-container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.tabs {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.tabs button {
+    padding: 12px 26px;
+    margin: 6px;
+    border: none;
+    background: #4a6cf7;
+    color: white;
+    border-radius: 25px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.tabs button:hover {
+    background: #364fc7;
+}
+
+/* COMMON */
+.section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* QUOTES */
+.quote-card {
+    background: linear-gradient(135deg, #ffffff, #eef2ff);
+    padding: 30px;
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: 500;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* STORIES */
+.story-card {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.story-card img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.story-card h3 {
+    margin: 10px 0;
+}
+
+/* VIDEOS */
+.video-card {
+    background: white;
+    padding: 15px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.video-card video {
+    width: 100%;
+    border-radius: 12px;
+}

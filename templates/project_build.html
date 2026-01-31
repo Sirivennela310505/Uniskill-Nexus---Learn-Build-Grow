@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ project.title }} | UniSkill Nexus</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="project-container">
+
+  <div class="project-title">
+    {{ project.title }}
+  </div>
+
+  <div class="project-tech">
+    Technology: {{ language }}
+  </div>
+
+  <p class="project-desc">
+    This project helps students understand real-world implementation of
+    <strong>{{ project.title }}</strong> using <strong>{{ language }}</strong>.
+    It focuses on practical learning, clean structure, and an industry-level approach.
+  </p>
+
+<button class="create-btn" onclick="startProject()">🚀 Create Project</button>
+
+
+  <div class="project-section">
+    <h2>How to Start</h2>
+    <ul>
+      <li>Understand the problem statement</li>
+      <li>Install required tools and libraries</li>
+      <li>Create basic project structure</li>
+    </ul>
+  </div>
+
+  <div class="project-section">
+    <h2>Project Roadmap</h2>
+    <ol>
+      <li>Design application flow</li>
+      <li>Implement core logic</li>
+      <li>Integrate database / API</li>
+      <li>Test with sample data</li>
+      <li>Finalize and deploy</li>
+    </ol>
+  </div>
+
+  <div class="project-section">
+    <h2>Learning Resources</h2>
+    <div class="resource-links">
+      <a href="https://github.com/search?q={{ project.title }}" target="_blank">
+        GitHub Sample Projects
+      </a>
+      <a href="https://www.geeksforgeeks.org/" target="_blank">
+        GeeksforGeeks Tutorials
+      </a>
+      <a href="https://www.youtube.com/results?search_query={{ project.title }}" target="_blank">
+        YouTube Full Project Tutorials
+      </a>
+    </div>
+  </div>
+<div id="projectSetup" class="project-section" style="display:none;">
+  <h2>Project Setup (Start Here)</h2>
+
+  <p><strong>Recommended Folder Structure:</strong></p>
+  <pre>
+project-folder/
+│── src/
+│── resources/
+│── README.md
+│── requirements.txt / pom.xml
+  </pre>
+
+  <p><strong>First Step:</strong></p>
+  <ul>
+    <li>Create the project folder</li>
+    <li>Initialize Git repository</li>
+    <li>Open project in VS Code / IntelliJ</li>
+  </ul>
+
+  <p><strong>Next:</strong></p>
+  <ul>
+    <li>Write basic logic</li>
+    <li>Test with sample input</li>
+    <li>Improve features step by step</li>
+  </ul>
+</div>
+
+</div>
+
+<script>
+function startProject() {
+  document.getElementById("projectSetup").style.display = "block";
+  document.getElementById("projectSetup").scrollIntoView({ behavior: "smooth" });
+}
+</script>
+
+</body>
+</html>

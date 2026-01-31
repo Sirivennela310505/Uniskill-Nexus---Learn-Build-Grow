@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Performance Tracker - Uniskill Nexus</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .perf-container {
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        .perf-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+        }
+
+        .progress-bar {
+            height: 20px;
+            background: #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress {
+            height: 100%;
+            background: #ffb4a2;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #ffb4a2;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="perf-container">
+    <h1>📊 Your Learning Performance</h1>
+
+    <!-- Courses -->
+    <div class="perf-card">
+        <h3>📘 Courses Completed</h3>
+       <p>You have completed <b>{{ courses_completed|default(0) }}</b> out of <b>{{ total_courses|default(0) }}</b> courses</p>
+
+
+       <div class="progress-bar">
+    <div class="progress" style="width: {{ course_percent|default(0) }}%">
+        {{ course_percent|default(0) }}%
+    </div>
+</div>
+
+
+    <!-- Projects -->
+    <div class="perf-card">
+        <h3>🛠 Projects Built</h3>
+        <p>You have worked on <b>{{ projects_done }}</b> projects</p>
+        <span class="tag">Hands-on Learning</span>
+    </div>
+
+    <!-- Hackathons -->
+    <div class="perf-card">
+        <h3>🚀 Hackathon Participation</h3>
+        <p>Hackathon ideas explored: <b>{{ hackathons_viewed }}</b></p>
+        <span class="tag">Innovation</span>
+    </div>
+
+    <!-- Motivation -->
+    <div class="perf-card">
+        <h3>🔥 Motivation Streak</h3>
+        <p>You checked daily motivation <b>{{ motivation_days }}</b> times</p>
+        <span class="tag">Consistency</span>
+    </div>
+
+</div>
+
+</body>
+</html>

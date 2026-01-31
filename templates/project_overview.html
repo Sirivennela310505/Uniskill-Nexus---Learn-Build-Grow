@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ project.title }} | UniSkill Nexus</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    .project-box {
+      max-width: 900px;
+      margin: 60px auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .project-box h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .project-box p {
+      color: #555;
+      font-size: 17px;
+      margin-bottom: 30px;
+    }
+
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .lang-card {
+      padding: 30px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+      text-decoration: none;
+      color: #333;
+      font-size: 20px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .lang-card span {
+      display: block;
+      font-size: 14px;
+      font-weight: normal;
+      margin-top: 8px;
+      color: #666;
+    }
+
+    .lang-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+      background: linear-gradient(135deg, #ffecd2, #fcb69f);
+    }
+  </style>
+</head>
+<body>
+
+<div class="project-box">
+
+  <h1>🚀 {{ project.title }}</h1>
+  <p>
+    This project can be implemented using different technologies.  
+    Choose a language to see step-by-step guidance, resources, and GitHub code.
+  </p>
+
+  <h3>Choose Technology</h3>
+
+  <div class="lang-grid">
+    <a href="/projects/{{ project.id }}/python" class="lang-card">
+      🐍 Python
+      <span>Best for AI, ML & automation</span>
+    </a>
+
+    <a href="/projects/{{ project.id }}/java" class="lang-card">
+      ☕ Java
+      <span>Strong backend & database projects</span>
+    </a>
+
+    <a href="/projects/{{ project.id }}/web" class="lang-card">
+      🌐 Web
+      <span>HTML, CSS, JavaScript based</span>
+    </a>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stay Motivated</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/motivation.css') }}">
+</head>
+
+<body>
+
+<h1 class="title">🌱 Stay Motivated</h1>
+
+<p class="sparkle">
+    ✨ Don’t be demotivated. You can do it. Believe in yourself.
+</p>
+
+<div class="buttons">
+    <button class="big-btn" onclick="showQuotes()">💬 MOTIVATIONAL QUOTES</button>
+    <button class="big-btn" onclick="showStories()">🌈 MOTIVATIONAL STORIES</button>
+</div>
+
+
+<!-- QUOTES SECTION -->
+<div id="quotes" class="content hidden">
+    <p class="section-line">
+        🌟 Here are some motivational quotes. Scroll down for more.
+    </p>
+
+    <img src="{{ url_for('static', filename='motivation/img1.png') }}" class="quote-img">
+    <img src="{{ url_for('static', filename='motivation/img2.png') }}" class="quote-img">
+    <img src="{{ url_for('static', filename='motivation/img3.png') }}" class="quote-img">
+    <img src="{{ url_for('static', filename='motivation/img4.png') }}" class="quote-img">
+    <img src="{{ url_for('static', filename='motivation/img5.png') }}" class="quote-img">
+    <img src="{{ url_for('static', filename='motivation/img6.png') }}" class="quote-img">
+    <img src="{{ url_for('static', filename='motivation/img7.png') }}" class="quote-img">
+    <img src="{{ url_for('static', filename='motivation/img8.png') }}" class="quote-img">
+    <img src="{{ url_for('static', filename='motivation/img9.png') }}" class="quote-img">
+    <img src="{{ url_for('static', filename='motivation/img10.png') }}" class="quote-img">
+    <img src="{{ url_for('static', filename='motivation/img11.png') }}" class="quote-img">
+    <img src="{{ url_for('static', filename='motivation/img12.png') }}" class="quote-img">
+    <img src="{{ url_for('static', filename='motivation/img13.png') }}" class="quote-img">
+    <img src="{{ url_for('static', filename='motivation/img14.png') }}" class="quote-img">
+    <img src="{{ url_for('static', filename='motivation/img15.png') }}" class="quote-img">
+</div>
+
+<!-- STORIES SECTION -->
+<div id="stories" class="content hidden">
+    <p class="section-line">
+        🌱 Relax and get inspired from these real-life motivational stories.
+    </p>
+
+    <div class="story-card">
+        👨‍👩‍👦 <b>Parents’ Silent Struggle</b><br><br>
+        Once upon a time, a boy complained about studying every day.<br>
+        He didn’t notice his father waking up at 5 AM 🌅<br>
+        Working long hours without rest 😓<br>
+        And his mother saving every rupee 💰<br>
+        One day, he realized: <br>
+        <i>“My success is their dream.”</i><br>
+        From that day, he never wasted time again 💪
+    </div>
+
+    <div class="story-card">
+        📚 <b>The Backbench Student</b><br><br>
+        Once upon a time, a student sat on the last bench.<br>
+        Teachers ignored him, friends mocked him 😔<br>
+        But every night, he studied silently 🌙<br>
+        One day, his name topped the results 🏆<br>
+        Hard work spoke louder than words.
+    </div>
+
+    <div class="story-card">
+        🔥 <b>Failure Is Not the End</b><br><br>
+        A girl failed an exam she prepared for months.<br>
+        Tears came, confidence broke 💔<br>
+        But she tried again — slowly, patiently ⏳<br>
+        Next year, she cleared it with pride 🌟<br>
+        Failure didn’t stop her. Giving up would have.
+    </div>
+
+    <div class="story-card">
+        🚶‍♂️ <b>One Step Every Day</b><br><br>
+        Once upon a time, a student felt lost.<br>
+        No motivation, no direction 😕<br>
+        He started with just 30 minutes a day ⏱️<br>
+        Today, he is living his dream ✨<br>
+        Small steps changed everything.
+    </div>
+</div>
+
+
+<script>
+function showQuotes() {
+    document.getElementById("quotes").classList.remove("hidden");
+    document.getElementById("stories").classList.add("hidden");
+}
+
+function showStories() {
+    document.getElementById("stories").classList.remove("hidden");
+    document.getElementById("quotes").classList.add("hidden");
+}
+</script>
+
+</body>
+</html>

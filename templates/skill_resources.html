@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{ skill }} Resources</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="sidebar">
+  <a href="/skills">⬅ Back to Skills</a>
+</div>
+
+<div class="content">
+  <h1>📚 {{ skill }} Learning Resources</h1>
+
+  <ul class="resources">
+    {% for name, link in resources %}
+      <li>🔗 <a href="{{ link }}" target="_blank">{{ name }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
+</body>
+</html>

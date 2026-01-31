@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Skill Recommendation</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>AI Guide</h2>
+    <a href="/dashboard">⬅ Dashboard</a>
+</div>
+
+<div class="main">
+
+<div class="card">
+<h2>🤖 AI Skill Recommendation</h2>
+
+<form method="POST">
+    <label><b>Your Interest:</b></label><br>
+    <select name="interest" required>
+        <option value="coding">Coding</option>
+        <option value="web">Web Development</option>
+        <option value="ai">AI / ML</option>
+    </select>
+    <br><br>
+
+    <label><b>Your Level:</b></label><br>
+    <select name="level" required>
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+    </select>
+    <br><br>
+
+    <button class="btn">Get Recommendation</button>
+</form>
+</div>
+
+{% if recommendation %}
+<div class="card">
+<h2>✅ Recommended Skill: {{ recommendation.skill }}</h2>
+<p><b>Why?</b> {{ recommendation.reason }}</p>
+
+<p><b>📘 Best Resources:</b></p>
+<ul>
+{% for r in recommendation.resources %}
+<li>{{ r }}</li>
+{% endfor %}
+</ul>
+
+<p><b>🛠 Project Ideas:</b></p>
+<ul>
+{% for p in recommendation.projects %}
+<li>{{ p }}</li>
+{% endfor %}
+</ul>
+</div>
+{% endif %}
+
+</div>
+
+</body>
+</html>
