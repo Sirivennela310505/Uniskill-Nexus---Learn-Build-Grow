@@ -1,5 +1,4 @@
-UniSkill Nexus
-Learn • Build • Grow
+UniSkill Nexus - Learn • Build • Grow
 
 About the Application
 
@@ -68,11 +67,7 @@ Download or clone the project repository
 
 Install required packages using requirements.txt
 
-Run the application using the command:
-python app.py
 
-Open a browser and go to:
-http://127.0.0.1:5000/
 
 Project Developed By
 
