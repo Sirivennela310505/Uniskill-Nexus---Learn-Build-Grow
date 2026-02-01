@@ -90,3 +90,33 @@ Improved performance tracking
 Certificates for course completion
 
 Enhanced user experience
+
+## Application Screenshots
+
+### Opening Page
+![Opening Page](screenshots/openingpage.png)
+
+### Login Page
+![Login Page](screenshots/login.png)
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Skills Page
+![Skills Page](screenshots/skills.png)
+
+### Skill Details
+![Skill Details](screenshots/skilldetails.png)
+
+### Projects Page
+![Projects Page](screenshots/projects.png)
+
+### Hackathons Page
+![Hackathons Page](screenshots/hackathons.png)
+
+### AI Mentor
+![AI Mentor](screenshots/aimentor.png)
+
+### Motivation Page
+![Motivation Page](screenshots/motivation.png)
+
