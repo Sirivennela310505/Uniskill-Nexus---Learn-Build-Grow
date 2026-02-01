@@ -1,13 +1,13 @@
-UniSkill Nexus - Learn • Build • Grow
+## UniSkill Nexus - Learn • Build • Grow
 
-About the Application
+## About the Application
 
 UniSkill Nexus is a student-focused web application designed to help learners improve their skills in a structured and simple way.
 The application brings together learning courses, project building, hackathon ideas, daily motivation, and performance tracking in one platform.
 
 It is mainly created for beginners and college students who feel confused about where to start and how to progress step by step.
 
-Purpose of UniSkill Nexus
+## Purpose of UniSkill Nexus
 
 Many students struggle with:
 
@@ -21,26 +21,26 @@ Staying motivated throughout their learning journey
 
 UniSkill Nexus solves this problem by providing clear learning paths, practical ideas, and motivation in a single application.
 
-Features of the Application
+## Features of the Application
 
-Courses
+## Courses
 The app provides skill-based courses from beginner to advanced levels.
 Students can explore different technologies and start learning at their own pace.
 
-Projects
+## Projects
 Project ideas are included to help students apply what they learn.
 This encourages hands-on learning and practical experience.
 
-Hackathons
+## Hackathons
 The platform includes beginner-friendly and best hackathon ideas.
 Students can explore hackathon concepts without confusion.
 
-Daily Motivation
+## Daily Motivation
 A daily motivation section is included to keep students inspired.
 It helps learners stay consistent and positive.
 
-Performance Tracker
-The performance tracker shows learning progress such as:
+## Ai Mentor
+helps students to solve their doubts
 
 Courses completed
 
@@ -50,33 +50,38 @@ Hackathon participation
 
 Motivation consistency
 
-Login and Dashboard
+## Login and Dashboard
 Users can register and log in to access their personal dashboard.
 All sections of the application are easily accessible from the dashboard.
 
-Technologies Used
+## Technologies Used
 
 Backend: Python (Flask)
 Frontend: HTML, CSS, JavaScript
 Database: SQLite
 Version Control: Git and GitHub
 
-How to Run the Application
+## How to Run the Application
 
 Download or clone the project repository
 
 Install required packages using requirements.txt
 
+Run the application using
+python app.py
 
 
-Project Developed By
+
+
+
+## Project Developed By
 
 Sirivennela
 B.Tech Student
 
 UniSkill Nexus – Learn, Build, and Grow
 
-Future Enhancements
+## Future Enhancements
 
 More courses and project ideas
 
