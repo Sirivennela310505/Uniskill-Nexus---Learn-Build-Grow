@@ -120,3 +120,5 @@ Enhanced user experience
 ### Motivation Page
 ![Motivation Page](screenshots/motivation.png)
 
+Note: The `uniskill.db` file cannot be previewed on GitHub because it is a binary SQLite database.
+It is used automatically when the application is run locally.
