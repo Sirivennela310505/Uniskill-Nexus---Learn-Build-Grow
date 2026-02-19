@@ -1,4 +1,6 @@
 # UniSkill Nexus — Learn. Build. Grow.
+Built with ❤️ for student growth and open-source innovation.
+
 
 An open-source student growth ecosystem where students can learn skills, build projects, discover hackathons, stay motivated, and get AI-powered guidance — all in one place.
 
@@ -56,12 +58,16 @@ It helps learners stay consistent and positive.
 Users can register and log in to access their personal dashboard.
 All sections of the application are easily accessible from the dashboard.
 
-## Open source ai mentor
-If user selects "confused about career"
-→ Show predefined advice
+## 🤖 Open-Source AI Mentor
 
-If user selects "need motivation"
-→ Show motivational suggestion
+The AI mentor is currently rule-based and fully open-source compliant.
+
+Example logic:
+- If user selects "Confused about career" → Show predefined career guidance
+- If user selects "Need motivation" → Show motivational suggestion
+
+Future scope includes integration with open-source LLMs.
+
 
 
 ## 🛠 Tech Stack
@@ -73,20 +79,26 @@ If user selects "need motivation"
 
 ## ⚙️ How to Run Locally
 
-1. Clone this repo:
+1. Clone this repository:
+
 git clone https://github.com/Sirivennela310505/Uniskill-Nexus---Learn-Build-Grow
 
-2. Enter the project folder:
+2. Navigate into the project folder:
+
 cd Uniskill-Nexus---Learn-Build-Grow
 
 3. Install dependencies:
+
 python -m pip install -r requirements.txt
 
-4. Run the app:
+4. Run the application:
+
 python app.py
 
-5. Open this link in browser:
+5. Open in browser:
+
 http://127.0.0.1:5000/
+
 
 
 ## 📅 Hackathon Contribution Plan (March 1–31)
