@@ -71,30 +71,33 @@ If user selects "need motivation"
 - Database: SQLite
 - Version Control: Git & GitHub
 
-## ⚙️ Installation & Setup
+## ⚙️ How to Run Locally
 
-1. Clone the repository
-   git clone https://github.com/Sirivennela310505/Uniskill-Nexus---Learn-Build-Grow
+1. Clone this repo:
+git clone https://github.com/Sirivennela310505/Uniskill-Nexus---Learn-Build-Grow
 
-2. Navigate into the folder
-   cd Uniskill-Nexus---Learn-Build-Grow
+2. Enter the project folder:
+cd Uniskill-Nexus---Learn-Build-Grow
 
-3. Install dependencies
-   pip install -r requirements.txt
+3. Install dependencies:
+python -m pip install -r requirements.txt
 
-4. Run the application
-   python app.py
+4. Run the app:
+python app.py
 
-## 🎯 Hackathon Contributions
+5. Open this link in browser:
+http://127.0.0.1:5000/
 
-During the hackathon, the following improvements will be made:
 
-- UI/UX improvements
-- Improved AI Mentor logic
-- Hackathon filtering system
-- Code refactoring
-- Bug fixes and performance improvements
+## 📅 Hackathon Contribution Plan (March 1–31)
 
+During the hackathon, planned improvements include:
+
+- Improve UI responsiveness
+- Add project search feature
+- Add profile page with progress tracking
+- Enhanced AI mentor logic (rule-based)
+- Improve navigation and mobile support
 
 
 
@@ -147,5 +150,4 @@ AI Mentor (rule-based system, future integration with open-source LLMs)
 ### Motivation Page
 ![Motivation Page](screenshots/motivation.png)
 
-Note: The `uniskill.db` file cannot be previewed on GitHub because it is a binary SQLite database.
-It is used automatically when the application is run locally.
+
