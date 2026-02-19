@@ -56,6 +56,14 @@ It helps learners stay consistent and positive.
 Users can register and log in to access their personal dashboard.
 All sections of the application are easily accessible from the dashboard.
 
+## Open source ai mentor
+If user selects "confused about career"
+→ Show predefined advice
+
+If user selects "need motivation"
+→ Show motivational suggestion
+
+
 ## 🛠 Tech Stack
 
 - Backend: Python (Flask)
