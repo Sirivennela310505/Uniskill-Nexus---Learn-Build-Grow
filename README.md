@@ -1,4 +1,7 @@
-## UniSkill Nexus - Learn • Build • Grow
+# UniSkill Nexus — Learn. Build. Grow.
+
+An open-source student growth ecosystem where students can learn skills, build projects, discover hackathons, stay motivated, and get AI-powered guidance — all in one place.
+
 
 ## About the Application
 
@@ -21,7 +24,16 @@ Staying motivated throughout their learning journey
 
 UniSkill Nexus solves this problem by providing clear learning paths, practical ideas, and motivation in a single application.
 
-## Features of the Application
+## 🚀 Features
+
+- 📚 Skill learning resources
+- 🛠 Project building section
+- 🏆 Hackathon discovery section
+- 🤖 AI Mentor support
+- 🔥 Daily motivational quotes
+- 👤 User authentication & dashboard
+- 📈 Growth tracking (future scope)
+
 
 ## Courses
 The app provides skill-based courses from beginner to advanced levels.
@@ -54,21 +66,39 @@ Motivation consistency
 Users can register and log in to access their personal dashboard.
 All sections of the application are easily accessible from the dashboard.
 
-## Technologies Used
+## 🛠 Tech Stack
 
-Backend: Python (Flask)
-Frontend: HTML, CSS, JavaScript
-Database: SQLite
-Version Control: Git and GitHub
+- Backend: Python (Flask)
+- Frontend: HTML, CSS, JavaScript
+- Database: SQLite
+- Version Control: Git & GitHub
 
-## How to Run the Application
+## ⚙️ Installation & Setup
 
-Download or clone the project repository
+1. Clone the repository
+   git clone https://github.com/Sirivennela310505/Uniskill-Nexus---Learn-Build-Grow
 
-Install required packages using requirements.txt
+2. Navigate into the folder
+   cd Uniskill-Nexus---Learn-Build-Grow
 
-Run the application using
-python app.py
+3. Install dependencies
+   pip install -r requirements.txt
+
+4. Run the application
+   python app.py
+
+5. Open browser and go to:
+   http://127.0.0.1:5000/
+## 🎯 Hackathon Contributions
+
+During the hackathon, the following improvements will be made:
+
+- UI/UX improvements
+- Improved AI Mentor logic
+- Hackathon filtering system
+- Code refactoring
+- Bug fixes and performance improvements
+
 
 
 
@@ -115,6 +145,7 @@ Enhanced user experience
 ![Hackathons Page](screenshots/hackathons.png)
 
 ### AI Mentor
+AI Mentor (rule-based system, future integration with open-source LLMs)
 ![AI Mentor](screenshots/aimentor.png)
 
 ### Motivation Page
