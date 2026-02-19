@@ -51,16 +51,6 @@ Students can explore hackathon concepts without confusion.
 A daily motivation section is included to keep students inspired.
 It helps learners stay consistent and positive.
 
-## Ai Mentor
-helps students to solve their doubts
-
-Courses completed
-
-Projects explored
-
-Hackathon participation
-
-Motivation consistency
 
 ## Login and Dashboard
 Users can register and log in to access their personal dashboard.
@@ -87,8 +77,6 @@ All sections of the application are easily accessible from the dashboard.
 4. Run the application
    python app.py
 
-5. Open browser and go to:
-   http://127.0.0.1:5000/
 ## 🎯 Hackathon Contributions
 
 During the hackathon, the following improvements will be made:
