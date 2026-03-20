@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Best Hackathon Ideas | UniSkill Nexus</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: Arial, sans-serif;
+    background: #e8e8e8;
+    min-height: 100vh;
+}
+
+.container { display: flex; }
+
+.sidebar {
+    width: 200px;
+    background: #f4a896;
+    min-height: 100vh;
+    padding: 20px;
+    flex-shrink: 0;
+}
+
+.sidebar h2 { margin-bottom: 30px; font-size: 18px; }
+
+.sidebar a {
+    display: block;
+    background: white;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+.sidebar a:hover { background: #ffe0da; }
+
+.main { flex: 1; padding: 40px; }
+
+.page-title { font-size: 28px; font-weight: bold; color: #222; margin-bottom: 6px; }
+.page-subtitle { color: #777; font-size: 14px; margin-bottom: 25px; }
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #555;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.ideas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+}
+
+.idea-card {
+    background: white;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-left: 5px solid #f4a896;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: black;
+    display: block;
+}
+
+.idea-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.idea-card h3 { font-size: 16px; color: #222; margin-bottom: 8px; }
+.idea-card p { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 12px; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+
+.tag {
+    background: #fff0ed;
+    border: 1px solid #f4a896;
+    padding: 3px 9px;
+    border-radius: 6px;
+    font-size: 11px;
+    color: #333;
+    font-weight: bold;
+}
+
+.impact-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.impact-high { background: #ffd4d4; color: #7a0a0a; }
+.impact-medium { background: #fff3cd; color: #856404; }
+
+.view-link {
+    font-size: 12px;
+    color: #f4a896;
+    font-weight: bold;
+    margin-top: 8px;
+    display: inline-block;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="sidebar">
+        <h2>👤 Student</h2>
+        <a href="/dashboard">🏠 Dashboard</a>
+        <a href="/skills">🧠 Skills</a>
+        <a href="/projects">📁 Projects</a>
+        <a href="/motivation">🔥 Motivation</a>
+        <a href="/hackathons">🏆 Hackathons</a>
+        <a href="/ai-mentor">🤖 AI Mentor</a>
+        <a href="/internships">💼 Internships</a>
+    </div>
+
+    <div class="main">
+
+        <a href="/hackathons" class="back-link">← Back to Hackathons</a>
+        <div class="page-title">🚀 Best Hackathon Ideas</div>
+        <div class="page-subtitle">20+ winning-level ideas — click any to see full guidance, steps and resources!</div>
+
+        <div class="ideas-grid">
+
+            <a href="/hackathon/ai-career-guidance" class="idea-card">
+                <span class="impact-badge impact-high">🔥 High Impact</span>
+                <h3>AI Career Guidance System</h3>
+                <p>Helps students choose the right career using AI-based recommendations.</p>
+                <div class="tags"><span class="tag">Python</span><span class="tag">AI</span><span class="tag">Flask</span></div>
+                <span class="view-link">View Full Guide →</span>
+            </a>
+
+            <a href="/hackathon/internship-recommender" class="idea-card">
+                <span class="impact-badge impact-high">🔥 High Impact</span>
+                <h3>Smart Internship Recommender</h3>
+                <p>Suggests internships based on student skills and interests using ML.</p>
+                <div class="tags"><span class="tag">ML</span><span class="tag">Python</span><span class="tag">Web</span></div>
+                <span class="view-link">View Full Guide →</span>
+            </a>
+
+            <a href="/hackathon/mental-health" class="idea-card">
+                <span class="impact-badge impact-high">🔥 High Impact</span>
+                <h3>Student Mental Health App</h3>
+                <p>Daily mood tracking, stress management and motivation support for students.</p>
+                <div class="tags"><span class="tag">Web</span><span class="tag">Flask</span><span class="tag">UI</span></div>
+                <span class="view-link">View Full Guide →</span>
+            </a>
+
+            <a href="/hackathon/campus-chatbot" class="idea-card">
+                <span class="impact-badge impact-high">🔥 High Impact</span>
+                <h3>Campus Helpdesk Chatbot</h3>
+                <p>AI chatbot that answers college-related queries automatically using NLP.</p>
+                <div class="tags"><span class="tag">AI</span><span class="tag">NLP</span><span class="tag">Python</span></div>
+                <span class="view-link">View Full Guide →</span>
+            </a>
+
+            <a href="/hackathon/attendance-system" class="idea-card">
+                <span class="impact-badge impact-high">🔥 High Impact</span>
+                <h3>Smart Attendance System</h3>
+                <p>Automates attendance using face recognition — no manual marking needed.</p>
+                <div class="tags"><span class="tag">AI</span><span class="tag">OpenCV</span><span class="tag">Python</span></div>
+                <span class="view-link">View Full Guide →</span>
+            </a>
+
+            <a href="/hackathon/fake-news" class="idea-card">
+                <span class="impact-badge impact-high">🔥 High Impact</span>
+                <h3>Fake News Detection</h3>
+                <p>Detects fake news articles using ML and NLP text classification.</p>
+                <div class="tags"><span class="tag">ML</span><span class="tag">NLP</span><span class="tag">Python</span></div>
+                <span class="view-link">View Full Guide →</span>
+            </a>
+
+            <a href="/hackathon/skill-recommendation" class="idea-card">
+                <span class="impact-badge impact-medium">⭐ Medium Impact</span>
+                <h3>Skill Recommendation Platform</h3>
+                <p>Suggests skills and learning paths based on student career goals.</p>
+                <div class="tags"><span class="tag">AI</span><span class="tag">Web</span><span class="tag">Python</span></div>
+                <span class="view-link">View Full Guide →</span>
+            </a>
+
+            <a href="/hackathon/blood-donation" class="idea-card">
+                <span class="impact-badge impact-high">🔥 High Impact</span>
+                <h3>Blood Donation App</h3>
+                <p>Connects blood donors with patients in need based on location and blood group.</p>
+                <div class="tags"><span class="tag">Web</span><span class="tag">Flask</span><span class="tag">Maps API</span></div>
+                <span class="view-link">View Full Guide →</span>
+            </a>
+
+            <a href="/hackathon/online-exam" class="idea-card">
+                <span class="impact-badge impact-medium">⭐ Medium Impact</span>
+                <h3>Online Exam System</h3>
+                <p>Secure exam platform with auto-evaluation, timer and result generation.</p>
+                <div class="tags"><span class="tag">Web</span><span class="tag">Flask</span><span class="tag">Database</span></div>
+                <span class="view-link">View Full Guide →</span>
+            </a>
+
+            <a href="/hackathon/expense-tracker" class="idea-card">
+                <span class="impact-badge impact-medium">⭐ Medium Impact</span>
+                <h3>Smart Expense Tracker</h3>
+                <p>Tracks and analyzes student expenses with charts and budget alerts.</p>
+                <div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">Chart.js</span></div>
+                <span class="view-link">View Full Guide →</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

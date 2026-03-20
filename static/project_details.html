@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Projects</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="content">
+    <h1>{{ skill | capitalize }} Projects</h1>
+    <p>Real-world project ideas with full guidance</p>
+
+    {% if projects %}
+        {% for p in projects %}
+        <div class="card">
+            <h2>{{ p.title }}</h2>
+
+            <p><b>Introduction:</b> {{ p.intro }}</p>
+
+            <p><b>How to Create:</b></p>
+            {% if p.how is iterable and p.how is not string %}
+            <ul>
+                {% for step in p.how %}
+                <li>{{ step }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <p>{{ p.how }}</p>
+            {% endif %}
+
+            <p><b>Output:</b> {{ p.output }}</p>
+
+            <p>
+                <b>GitHub:</b>
+                <a href="{{ p.github }}" target="_blank">
+                    View Project Code
+                </a>
+            </p>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No projects found for this skill.</p>
+    {% endif %}
+</div>
+
+</body>
+</html>

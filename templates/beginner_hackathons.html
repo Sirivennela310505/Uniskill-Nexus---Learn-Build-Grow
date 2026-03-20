@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Beginner Hackathon Ideas | UniSkill Nexus</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: Arial, sans-serif;
+    background: #e8e8e8;
+    min-height: 100vh;
+}
+
+.container { display: flex; }
+
+.sidebar {
+    width: 200px;
+    background: #f4a896;
+    min-height: 100vh;
+    padding: 20px;
+    flex-shrink: 0;
+}
+
+.sidebar h2 { margin-bottom: 30px; font-size: 18px; }
+
+.sidebar a {
+    display: block;
+    background: white;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+.sidebar a:hover { background: #ffe0da; }
+
+.main { flex: 1; padding: 40px; }
+
+.page-title { font-size: 28px; font-weight: bold; color: #222; margin-bottom: 6px; }
+.page-subtitle { color: #777; font-size: 14px; margin-bottom: 10px; }
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #555;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.intro-box {
+    background: linear-gradient(135deg, #f4a896, #f9c784);
+    border-radius: 14px;
+    padding: 20px 25px;
+    margin-bottom: 25px;
+    color: white;
+}
+
+.intro-box h3 { font-size: 16px; margin-bottom: 8px; }
+.intro-box p { font-size: 13px; line-height: 1.6; opacity: 0.9; }
+
+.ideas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.idea-card {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-left: 5px solid #f4a896;
+    text-decoration: none;
+    color: black;
+    display: block;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.idea-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.idea-card .number {
+    font-size: 11px;
+    font-weight: bold;
+    color: #f4a896;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.idea-card h3 { font-size: 15px; color: #222; margin-bottom: 6px; }
+.idea-card p { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 10px; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+
+.tag {
+    background: #fff0ed;
+    border: 1px solid #f4a896;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    color: #333;
+    font-weight: bold;
+}
+
+.time-badge {
+    font-size: 11px;
+    color: #888;
+}
+
+.view-link {
+    font-size: 12px;
+    color: #f4a896;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 4px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="sidebar">
+        <h2>👤 Student</h2>
+        <a href="/dashboard">🏠 Dashboard</a>
+        <a href="/skills">🧠 Skills</a>
+        <a href="/projects">📁 Projects</a>
+        <a href="/motivation">🔥 Motivation</a>
+        <a href="/hackathons">🏆 Hackathons</a>
+        <a href="/ai-mentor">🤖 AI Mentor</a>
+        <a href="/internships">💼 Internships</a>
+    </div>
+
+    <div class="main">
+
+        <a href="/hackathons" class="back-link">← Back to Hackathons</a>
+        <div class="page-title">🌱 Beginner Friendly Ideas</div>
+        <div class="page-subtitle">Perfect for your first hackathon — simple, buildable in 24-48 hours!</div>
+
+        <div class="intro-box">
+            <h3>👋 First time in a hackathon?</h3>
+            <p>Don't worry! Every expert was once a beginner. Pick any idea below, build a working demo, and submit with confidence. Judges value working projects over complex broken ones!</p>
+        </div>
+
+        <div class="ideas-grid">
+
+            <a href="/hackathon/todo-app" class="idea-card">
+                <div class="number">Idea 01 • ⏱️ 4-6 hours</div>
+                <h3>📝 To-Do List App</h3>
+                <p>Simple task manager — add, complete, delete tasks. Perfect first project.</p>
+                <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Flask</span></div>
+                <span class="view-link">View Full Guide →</span>
+            </a>
+
+            <a href="/hackathon/weather-app" class="idea-card">
+                <div class="number">Idea 02 • ⏱️ 6-8 hours</div>
+                <h3>🌤️ Weather App</h3>
+                <p>Shows real-time weather for any city using free OpenWeatherMap API.</p>
+                <div class="tags"><span class="tag">Python</span><span class="tag">API</span><span class="tag">Flask</span></div>
+                <span class="view-link">View Full Guide →</span>
+            </a>
+
+            <a href="/hackathon/calculator" class="idea-card">
+                <div class="number">Idea 03 • ⏱️ 3-4 hours</div>
+                <h3>🔢 Calculator App</h3>
+                <p>Basic scientific calculator with clean UI. Great for showing logic skills.</p>
+                <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+                <span class="view-link">View Full Guide →</span>
+            </a>
+
+            <a href="/hackathon/quiz-app" class="idea-card">
+                <div class="number">Idea 04 • ⏱️ 8-10 hours</div>
+                <h3>🎯 Quiz App</h3>
+                <p>MCQ quiz with score tracking, timer and result page. Judges love interactive apps.</p>
+                <div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">JavaScript</span></div>
+                <span class="view-link">View Full Guide →</span>
+            </a>
+
+            <a href="/hackathon/expense-tracker" class="idea-card">
+                <div class="number">Idea 05 • ⏱️ 8-12 hours</div>
+                <h3>💰 Expense Tracker</h3>
+                <p>Track daily expenses with charts. Solves a real student problem — judges love it!</p>
+                <div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">Chart.js</span></div>
+                <span class="view-link">View Full Guide →</span>
+            </a>
+
+            <a href="/hackathon/notes-app" class="idea-card">
+                <div class="number">Idea 06 • ⏱️ 6-8 hours</div>
+                <h3>📒 Notes App</h3>
+                <p>Create, edit, delete notes. Shows full CRUD skills cleanly.</p>
+                <div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">SQLite</span></div>
+                <span class="view-link">View Full Guide →</span>
+            </a>
+
+            <a href="/hackathon/password-generator" class="idea-card">
+                <div class="number">Idea 07 • ⏱️ 2-3 hours</div>
+                <h3>🔐 Password Generator</h3>
+                <p>Generates strong secure passwords. Quick to build, great security angle.</p>
+                <div class="tags"><span class="tag">Python</span><span class="tag">Flask</span></div>
+                <span class="view-link">View Full Guide →</span>
+            </a>
+
+            <a href="/hackathon/digital-clock" class="idea-card">
+                <div class="number">Idea 08 • ⏱️ 2-3 hours</div>
+                <h3>⏰ Digital Clock</h3>
+                <p>Beautiful real-time digital clock with date display. Great UI practice.</p>
+                <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+                <span class="view-link">View Full Guide →</span>
+            </a>
+
+            <a href="/hackathon/stopwatch" class="idea-card">
+                <div class="number">Idea 09 • ⏱️ 2-3 hours</div>
+                <h3>⏱️ Stopwatch App</h3>
+                <p>Start, stop, reset timer with lap recording. Shows JavaScript logic skills.</p>
+                <div class="tags"><span class="tag">HTML</span><span class="tag">JavaScript</span></div>
+                <span class="view-link">View Full Guide →</span>
+            </a>
+
+            <a href="/hackathon/portfolio" class="idea-card">
+                <div class="number">Idea 10 • ⏱️ 6-8 hours</div>
+                <h3>🌐 Portfolio Website</h3>
+                <p>Personal website showing your skills and projects. Useful even after hackathon!</p>
+                <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+                <span class="view-link">View Full Guide →</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

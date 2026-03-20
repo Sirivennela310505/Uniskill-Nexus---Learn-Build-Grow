@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{ skill }} Quiz</title>
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #e8e8e8;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 200px;
+    background: #f4a896;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+.sidebar a {
+    display: block;
+    background: white;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+.sidebar a:hover {
+    background: #ffe0da;
+}
+
+.main {
+    flex: 1;
+    padding: 40px;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 6px;
+}
+
+.page-subtitle {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+/* Score bar at top */
+.score-bar {
+    background: white;
+    border-radius: 12px;
+    padding: 16px 24px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.score-bar span {
+    font-size: 15px;
+    color: #555;
+}
+
+.score-number {
+    font-size: 22px;
+    font-weight: bold;
+    color: #f4a896;
+}
+
+/* Question card */
+.question-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-left: 5px solid #f4a896;
+    max-width: 100%;
+}
+
+.question-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.question-num {
+    font-size: 12px;
+    color: #f4a896;
+    font-weight: bold;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Options */
+.options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.option {
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 2px solid #eee;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    background: #fafafa;
+    transition: all 0.2s;
+    text-align: left;
+}
+
+.option:hover {
+    border-color: #f4a896;
+    background: #fff5f3;
+}
+
+.option.correct {
+    background: #d4f5d4;
+    border-color: #4CAF50;
+    color: #1a6b14;
+    font-weight: bold;
+}
+
+.option.wrong {
+    background: #ffd4d4;
+    border-color: #e74c3c;
+    color: #7a0a0a;
+}
+
+.option.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Result box shown after answering */
+.result-msg {
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    display: none;
+}
+
+.result-msg.correct {
+    background: #d4f5d4;
+    color: #1a6b14;
+}
+
+.result-msg.wrong {
+    background: #ffd4d4;
+    color: #7a0a0a;
+}
+
+/* Submit button */
+.submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: #222;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s;
+}
+
+.submit-btn:hover {
+    background: #444;
+}
+
+/* Final score */
+.final-score {
+    display: none;
+    background: white;
+    border-radius: 14px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+.final-score h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.big-score {
+    font-size: 60px;
+    font-weight: bold;
+    color: #f4a896;
+    margin: 10px 0;
+}
+
+.score-msg {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.retry-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #f4a896;
+    color: black;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    margin: 5px;
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #222;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    margin: 5px;
+}
+
+/* No questions fallback */
+.no-questions {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    color: #888;
+    font-size: 16px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="sidebar">
+        <h2>👤 Student</h2>
+        <a href="/dashboard">🏠 Dashboard</a>
+        <a href="/skills">🧠 Skills</a>
+        <a href="/projects">📁 Projects</a>
+        <a href="/motivation">🔥 Motivation</a>
+        <a href="/hackathons">🏆 Hackathons</a>
+        <a href="/ai-mentor">🤖 AI Mentor</a>
+        <a href="/internships">💼 Internships</a>
+    </div>
+
+    <div class="main">
+
+        <div class="page-title">🧠 {{ skill }} Skill Quiz</div>
+        <div class="page-subtitle">10 fresh questions every time — test your real knowledge! 🚀</div>
+
+        {% if questions %}
+
+        <!-- Live score bar -->
+        <div class="score-bar">
+            <span>📊 Your Score</span>
+            <span class="score-number" id="live-score">0 / {{ questions|length }}</span>
+        </div>
+
+        <!-- Questions -->
+        {% for q in questions %}
+        <div class="question-card" id="qcard-{{ loop.index }}">
+            <div class="question-num">Question {{ loop.index }} of {{ questions|length }}</div>
+            <div class="question-text">{{ q.question }}</div>
+            <div class="options" id="options-{{ loop.index }}">
+                {% for opt in q.options %}
+                <button class="option"
+                    onclick="checkAnswer(this, '{{ opt }}', '{{ q.answer }}', {{ loop.index }})">
+                    {{ opt }}
+                </button>
+                {% endfor %}
+            </div>
+            <div class="result-msg" id="result-{{ loop.index }}"></div>
+        </div>
+        {% endfor %}
+
+        <!-- Final score section -->
+        <div class="final-score" id="final-score">
+            <h2>🎉 Quiz Complete!</h2>
+            <div class="big-score" id="final-number">0/{{ questions|length }}</div>
+            <div class="score-msg" id="final-msg"></div>
+            <a href="/skills/{{ skill|lower }}/quiz" class="retry-btn">🔄 Try Again (New Questions)</a>
+            <a href="/skills" class="back-btn">🧠 Back to Skills</a>
+        </div>
+
+        {% else %}
+        <div class="no-questions">
+            😔 Could not load questions right now. Please try again!
+            <br><br>
+            <a href="/skills/{{ skill|lower }}/quiz" style="color:#f4a896; font-weight:bold;">🔄 Retry</a>
+        </div>
+        {% endif %}
+
+    </div>
+
+</div>
+
+<script>
+    let score = 0;
+    let answered = 0;
+    const total = {{ questions|length if questions else 0 }};
+
+    function checkAnswer(btn, selected, correct, qIndex) {
+        // Disable all options for this question
+        const allOptions = document.querySelectorAll(`#options-${qIndex} .option`);
+        allOptions.forEach(opt => {
+            opt.classList.add('disabled');
+        });
+
+        const resultBox = document.getElementById(`result-${qIndex}`);
+        resultBox.style.display = 'block';
+
+        if (selected === correct) {
+            btn.classList.add('correct');
+            resultBox.textContent = '✅ Correct!';
+            resultBox.className = 'result-msg correct';
+            score++;
+        } else {
+            btn.classList.add('wrong');
+            resultBox.textContent = `❌ Wrong! Correct answer: ${correct}`;
+            resultBox.className = 'result-msg wrong';
+
+            // Highlight correct answer
+            allOptions.forEach(opt => {
+                if (opt.textContent.trim() === correct.trim()) {
+                    opt.classList.add('correct');
+                }
+            });
+        }
+
+        // Update live score
+        answered++;
+        document.getElementById('live-score').textContent = `${score} / ${total}`;
+
+        // Show final score when all answered
+        if (answered === total) {
+            setTimeout(() => {
+                const finalBox = document.getElementById('final-score');
+                finalBox.style.display = 'block';
+                document.getElementById('final-number').textContent = `${score}/${total}`;
+
+                let msg = '';
+                const percent = (score / total) * 100;
+                if (percent === 100) msg = '🏆 Perfect score! You are a master!';
+                else if (percent >= 70) msg = '🎉 Great job! Keep it up!';
+                else if (percent >= 40) msg = '💪 Good effort! Practice more!';
+                else msg = '📚 Keep studying! You will get there!';
+
+                document.getElementById('final-msg').textContent = msg;
+                finalBox.scrollIntoView({ behavior: 'smooth' });
+            }, 500);
+        }
+    }
+</script>
+
+</body>
+</html>

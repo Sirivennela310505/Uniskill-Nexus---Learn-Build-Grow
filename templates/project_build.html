@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ project.title }} | UniSkill Nexus</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #e8e8e8;
+      min-height: 100vh;
+    }
+
+    .container { display: flex; }
+
+    .sidebar {
+      width: 200px;
+      background: #f4a896;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .sidebar h2 { margin-bottom: 30px; font-size: 18px; }
+
+    .sidebar a {
+      display: block;
+      background: white;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 10px;
+      text-decoration: none;
+      color: black;
+      font-weight: 500;
+    }
+
+    .sidebar a:hover { background: #ffe0da; }
+
+    .main { flex: 1; padding: 40px; }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #555;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .project-header {
+      background: white;
+      border-radius: 14px;
+      padding: 25px 30px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      border-left: 5px solid #f4a896;
+    }
+
+    .project-header h1 { font-size: 24px; color: #222; margin-bottom: 8px; }
+
+    .tech-badge {
+      display: inline-block;
+      background: #f4a896;
+      color: black;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 25px 30px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+
+    .card h2 {
+      font-size: 18px;
+      color: #222;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f4f4f4;
+    }
+
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      padding: 0;
+    }
+
+    .steps li {
+      counter-increment: step;
+      padding: 10px 10px 10px 50px;
+      margin-bottom: 10px;
+      background: #fff8f7;
+      border-radius: 8px;
+      position: relative;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 12px;
+      top: 10px;
+      background: #f4a896;
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .bullet-list li {
+      padding: 8px 10px 8px 30px;
+      margin-bottom: 8px;
+      position: relative;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .bullet-list li::before {
+      content: "✅";
+      position: absolute;
+      left: 0;
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 12px;
+    }
+
+    .resource-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: #fff8f7;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #333;
+      border: 1px solid #f4a896;
+      font-size: 14px;
+      font-weight: bold;
+      transition: all 0.2s;
+    }
+
+    .resource-link:hover {
+      background: #f4a896;
+      color: black;
+    }
+
+    .setup-box {
+      display: none;
+      background: #f8fff8;
+      border-radius: 14px;
+      padding: 25px 30px;
+      margin-top: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      border-left: 5px solid #4CAF50;
+    }
+
+    .setup-box h2 {
+      font-size: 18px;
+      color: #1a6b14;
+      margin-bottom: 15px;
+    }
+
+    pre {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      overflow-x: auto;
+      margin: 10px 0 20px;
+    }
+
+    .start-btn {
+      display: inline-block;
+      padding: 14px 30px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 5px;
+    }
+
+    .start-btn:hover { background: #388E3C; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="sidebar">
+    <h2>👤 Student</h2>
+    <a href="/dashboard">🏠 Dashboard</a>
+    <a href="/skills">🧠 Skills</a>
+    <a href="/projects">📁 Projects</a>
+    <a href="/motivation">🔥 Motivation</a>
+    <a href="/hackathons">🏆 Hackathons</a>
+    <a href="/ai-mentor">🤖 AI Mentor</a>
+    <a href="/internships">💼 Internships</a>
+  </div>
+
+  <div class="main">
+
+    <a href="/projects/{{ project.id }}" class="back-link">← Back to Technology Choice</a>
+
+    <!-- Header -->
+    <div class="project-header">
+      <h1>{{ project.title }}</h1>
+      <span class="tech-badge">🛠️ Technology: {{ language }}</span>
+      <span class="level-badge level-{{ project.level }}"
+        style="margin-left:10px; display:inline-block; padding:4px 14px;
+               border-radius:20px; font-size:13px; font-weight:bold;
+               background: {% if project.level == 'Beginner' %}#d4f5d4{% elif project.level == 'Intermediate' %}#fff3cd{% else %}#ffd4d4{% endif %};
+               color: {% if project.level == 'Beginner' %}#1a6b14{% elif project.level == 'Intermediate' %}#856404{% else %}#7a0a0a{% endif %};">
+        {{ project.level }}
+      </span>
+    </div>
+
+    <!-- How to Start -->
+    <div class="card">
+      <h2>🚀 How to Start</h2>
+      <ul class="bullet-list">
+        <li>Understand the problem this project solves</li>
+        <li>Install {{ language }} and required tools/libraries</li>
+        <li>Watch 1-2 YouTube tutorials on {{ project.title }}</li>
+        <li>Create a new project folder and open in VS Code</li>
+        <li>Start with the basic structure before adding features</li>
+      </ul>
+    </div>
+
+    <!-- Project Roadmap -->
+    <div class="card">
+      <h2>🗺️ Project Roadmap</h2>
+      <ol class="steps">
+
+        {% set title = project.title|lower %}
+
+        {% if "resume" in title %}
+          <li>Build file upload feature to accept PDF resumes</li>
+          <li>Extract text from PDF using PyPDF2 or pdfplumber</li>
+          <li>Analyze keywords and skills using NLP</li>
+          <li>Compare resume with job description</li>
+          <li>Show score and improvement suggestions</li>
+
+        {% elif "attendance" in title or "face" in title %}
+          <li>Set up camera capture using OpenCV</li>
+          <li>Collect and store face images for each student</li>
+          <li>Train face recognition model</li>
+          <li>Build real-time face detection and matching</li>
+          <li>Store attendance records in database</li>
+
+        {% elif "chat" in title %}
+          <li>Set up Flask-SocketIO for real-time communication</li>
+          <li>Build login and room creation system</li>
+          <li>Implement message sending and receiving</li>
+          <li>Add online/offline user status</li>
+          <li>Store chat history in database</li>
+
+        {% elif "hospital" in title %}
+          <li>Design database for patients, doctors, appointments</li>
+          <li>Build patient registration and login system</li>
+          <li>Add doctor scheduling and appointment booking</li>
+          <li>Implement billing and medical records</li>
+          <li>Build admin dashboard for management</li>
+
+        {% elif "stock" in title %}
+          <li>Fetch historical stock data using yfinance API</li>
+          <li>Clean and visualize data with Pandas and Matplotlib</li>
+          <li>Train LSTM or regression model for prediction</li>
+          <li>Evaluate model accuracy</li>
+          <li>Build web dashboard to show predictions</li>
+
+        {% elif "movie" in title or "recommendation" in title %}
+          <li>Collect or download movie dataset from Kaggle</li>
+          <li>Build content-based filtering using TF-IDF</li>
+          <li>Add collaborative filtering using user ratings</li>
+          <li>Build web interface to enter preferences</li>
+          <li>Display top 10 recommended movies</li>
+
+        {% elif "food" in title or "order" in title %}
+          <li>Design menu and cart database structure</li>
+          <li>Build food listing page with categories</li>
+          <li>Implement add to cart and checkout flow</li>
+          <li>Add order tracking and status updates</li>
+          <li>Build admin panel to manage orders</li>
+
+        {% elif "voting" in title %}
+          <li>Build secure user registration and login</li>
+          <li>Create candidate listing and voting form</li>
+          <li>Implement one-vote-per-user restriction</li>
+          <li>Build real-time vote count display</li>
+          <li>Add admin panel to manage elections</li>
+
+        {% elif "weather" in title %}
+          <li>Register and get API key from OpenWeatherMap</li>
+          <li>Build search form for city name input</li>
+          <li>Fetch and parse weather JSON data</li>
+          <li>Display temperature, humidity, wind speed</li>
+          <li>Add 5-day forecast feature</li>
+
+        {% elif "blog" in title %}
+          <li>Set up Flask app with SQLite database</li>
+          <li>Build user registration and login system</li>
+          <li>Create post creation, editing, and deletion</li>
+          <li>Add comment system and likes</li>
+          <li>Build home feed showing all posts</li>
+
+        {% elif "library" in title %}
+          <li>Design database for books, members, transactions</li>
+          <li>Build book search and catalogue system</li>
+          <li>Add issue and return book functionality</li>
+          <li>Implement fine calculation for late returns</li>
+          <li>Build admin dashboard for management</li>
+
+        {% elif "inventory" in title %}
+          <li>Design database for products, stock, suppliers</li>
+          <li>Build product add, edit, delete system</li>
+          <li>Add low stock alert notifications</li>
+          <li>Implement purchase and sales tracking</li>
+          <li>Build reports and analytics dashboard</li>
+
+        {% elif "expense" in title %}
+          <li>Build expense entry form with category selection</li>
+          <li>Store expenses with date in database</li>
+          <li>Show monthly summary and totals</li>
+          <li>Add charts using Chart.js for visualization</li>
+          <li>Implement budget limit and alerts</li>
+
+        {% elif "news" in title and "fake" not in title %}
+          <li>Get API key from NewsAPI.org</li>
+          <li>Fetch news by category (tech, sports, business)</li>
+          <li>Display news cards with title, image, summary</li>
+          <li>Add search and filter by category</li>
+          <li>Add save article for later feature</li>
+
+        {% elif "fake" in title %}
+          <li>Download fake news dataset from Kaggle</li>
+          <li>Clean and preprocess text data</li>
+          <li>Extract features using TF-IDF vectorizer</li>
+          <li>Train classifier (Logistic Regression or LSTM)</li>
+          <li>Build web interface to test news headlines</li>
+
+        {% elif "quiz" in title or "exam" in title %}
+          <li>Design database for questions, answers, scores</li>
+          <li>Build admin panel to add/edit questions</li>
+          <li>Implement timed quiz with score tracking</li>
+          <li>Add result page with correct answers shown</li>
+          <li>Build leaderboard for top scores</li>
+
+        {% elif "disease" in title or "health" in title %}
+          <li>Download medical dataset (e.g., diabetes, heart disease)</li>
+          <li>Clean data and handle missing values</li>
+          <li>Train classification model (Random Forest, SVM)</li>
+          <li>Evaluate model accuracy and precision</li>
+          <li>Build web form for symptom input and prediction</li>
+
+        {% elif "covid" in title %}
+          <li>Download COVID-19 dataset from Kaggle or WHO</li>
+          <li>Clean and process data with Pandas</li>
+          <li>Build visualizations (line charts, maps)</li>
+          <li>Show country-wise statistics and comparisons</li>
+          <li>Deploy interactive dashboard using Flask</li>
+
+        {% elif "crime" in title %}
+          <li>Download crime dataset from government data portal</li>
+          <li>Clean and analyze data with Pandas</li>
+          <li>Find patterns by location, time, type</li>
+          <li>Build visualizations and heatmaps</li>
+          <li>Create interactive dashboard for exploration</li>
+
+        {% elif "sentiment" in title %}
+          <li>Collect text data (tweets, reviews) using API or dataset</li>
+          <li>Clean and preprocess text (remove stopwords, tokenize)</li>
+          <li>Train sentiment classifier (Positive/Negative/Neutral)</li>
+          <li>Evaluate model performance</li>
+          <li>Build web interface for real-time analysis</li>
+
+        {% elif "caption" in title or "image" in title %}
+          <li>Download image-caption dataset (MS COCO or Flickr)</li>
+          <li>Build CNN encoder for image feature extraction</li>
+          <li>Build RNN/LSTM decoder for caption generation</li>
+          <li>Train model and evaluate using BLEU score</li>
+          <li>Build web app to upload image and show caption</li>
+
+        {% elif "url" in title or "shortener" in title %}
+          <li>Set up Flask app with database</li>
+          <li>Generate unique short codes for each URL</li>
+          <li>Store original and short URL in database</li>
+          <li>Implement redirect from short URL to original</li>
+          <li>Add click tracking and analytics</li>
+
+        {% elif "gym" in title %}
+          <li>Design database for members, plans, payments</li>
+          <li>Build member registration and profile system</li>
+          <li>Add membership plan and fee management</li>
+          <li>Implement attendance tracking</li>
+          <li>Build admin dashboard for reports</li>
+
+        {% elif "portfolio" in title %}
+          <li>Design layout with About, Skills, Projects sections</li>
+          <li>Add smooth scrolling and animations with CSS</li>
+          <li>Make it fully responsive for mobile</li>
+          <li>Add contact form functionality</li>
+          <li>Deploy on GitHub Pages or Netlify for free</li>
+
+        {% elif "job" in title %}
+          <li>Build job seeker and recruiter registration</li>
+          <li>Create job listing with search and filter</li>
+          <li>Add resume upload and application system</li>
+          <li>Implement recruiter dashboard to manage applications</li>
+          <li>Add email notification for application status</li>
+
+        {% elif "elearning" in title or "learning platform" in title %}
+          <li>Build course listing with categories</li>
+          <li>Add video upload and streaming feature</li>
+          <li>Implement student enrollment and progress tracking</li>
+          <li>Add quiz after each module</li>
+          <li>Build instructor and student dashboards</li>
+
+        {% elif "blood" in title %}
+          <li>Build donor registration with blood group info</li>
+          <li>Add blood request form for patients</li>
+          <li>Match donors with patients by blood group</li>
+          <li>Add location-based search for nearby donors</li>
+          <li>Implement notification system for urgent requests</li>
+
+        {% elif "event" in title %}
+          <li>Build event creation and listing system</li>
+          <li>Add student registration for events</li>
+          <li>Implement QR code based check-in</li>
+          <li>Add event feedback and rating system</li>
+          <li>Build organizer dashboard for management</li>
+
+        {% elif "traffic" in title %}
+          <li>Download traffic sign dataset (GTSRB)</li>
+          <li>Preprocess and augment image data</li>
+          <li>Build CNN model for sign classification</li>
+          <li>Train and evaluate model accuracy</li>
+          <li>Build web app to upload image and predict sign</li>
+
+        {% elif "chatbot" in title %}
+          <li>Collect FAQ and campus-related question data</li>
+          <li>Build intent classification using NLP</li>
+          <li>Create response matching system</li>
+          <li>Integrate chatbot into web interface</li>
+          <li>Test with various student queries</li>
+
+        {% elif "internship" in title %}
+          <li>Collect internship data from platforms</li>
+          <li>Build student skill and interest profile form</li>
+          <li>Implement matching algorithm</li>
+          <li>Display ranked internship recommendations</li>
+          <li>Add apply button with redirect to platform</li>
+
+        {% elif "skill" in title and "recommendation" in title %}
+          <li>Map career goals to required skills</li>
+          <li>Build student profile form</li>
+          <li>Implement recommendation logic</li>
+          <li>Display recommended skill roadmaps</li>
+          <li>Link to learning resources for each skill</li>
+
+        {% elif "prediction" in title or "performance" in title %}
+          <li>Download student performance dataset</li>
+          <li>Clean data and select key features</li>
+          <li>Train prediction model (Random Forest)</li>
+          <li>Evaluate accuracy and fine-tune</li>
+          <li>Build web form for input and show prediction</li>
+
+        {% else %}
+          <li>Understand the problem and plan the solution</li>
+          <li>Set up {{ language }} development environment</li>
+          <li>Design database and application structure</li>
+          <li>Build core features one by one</li>
+          <li>Test thoroughly and deploy the project</li>
+        {% endif %}
+
+      </ol>
+    </div>
+
+    <!-- Learning Resources -->
+    <div class="card">
+      <h2>📚 Learning Resources</h2>
+      <div class="resource-grid">
+        <a href="https://github.com/search?q={{ project.title|replace(' ', '+') }}+{{ language }}"
+           target="_blank" class="resource-link">🐙 GitHub Projects</a>
+        <a href="https://www.geeksforgeeks.org/search/?q={{ project.title|replace(' ', '+') }}"
+           target="_blank" class="resource-link">📖 GeeksforGeeks Guide</a>
+        <a href="https://www.youtube.com/results?search_query={{ project.title|replace(' ', '+') }}+{{ language }}+full+project+tutorial"
+           target="_blank" class="resource-link">▶️ YouTube Full Tutorial</a>
+        <a href="https://www.kaggle.com/search?q={{ project.title|replace(' ', '+') }}"
+           target="_blank" class="resource-link">📊 Kaggle Datasets</a>
+      </div>
+    </div>
+
+    <!-- Create Project Button -->
+    <button class="start-btn" onclick="showSetup()">🚀 Start Building Now</button>
+
+    <!-- Setup Box -->
+    <div class="setup-box" id="setupBox">
+      <h2>✅ Project Setup — Start Here!</h2>
+
+      <p style="margin-bottom:10px; color:#444;"><strong>Recommended Folder Structure:</strong></p>
+      <pre>
+{{ project.title|replace(' ', '-')|lower }}/
+│── static/
+│── templates/
+│── app.py / Main.java / index.html
+│── requirements.txt
+│── README.md</pre>
+
+      <p style="margin-bottom:10px; color:#444;"><strong>First Steps:</strong></p>
+      <ul class="bullet-list">
+        <li>Create the project folder on your computer</li>
+        <li>Open it in VS Code or your favourite editor</li>
+        <li>Initialize a Git repository: <code>git init</code></li>
+        <li>Install required libraries for {{ language }}</li>
+        <li>Start coding from the first roadmap step above</li>
+      </ul>
+
+      <p style="margin-top:15px; color:#1a6b14; font-weight:bold;">
+        💡 Tip: Build one feature at a time. Don't try to build everything at once!
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+function showSetup() {
+  const box = document.getElementById("setupBox");
+  box.style.display = "block";
+  box.scrollIntoView({ behavior: "smooth" });
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ idea.title }}</title>
+
+    <style>
+        body {
+            background: #e9ecef;
+            font-family: Arial;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            margin-top: 25px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #ffb4a2;
+            padding: 6px 12px;
+            border-radius: 6px;
+            margin: 5px 5px 0 0;
+            font-weight: bold;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        a {
+            color: #ff6f61;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>{{ idea.title }}</h1>
+
+    <p><b>Description:</b> {{ idea.description }}</p>
+
+    <p><b>Why important for hackathons:</b> {{ idea.importance }}</p>
+
+    <h2>Technologies Used</h2>
+    {% for tech in idea.tech %}
+        <span class="tag">{{ tech }}</span>
+    {% endfor %}
+
+    <h2>How to Start</h2>
+    <ul>
+        {% for step in idea.steps %}
+        <li>{{ step }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Resources</h2>
+    <ul>
+        {% for name, link in idea.resources %}
+        <li><a href="{{ link }}" target="_blank">{{ name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+</body>
+</html>

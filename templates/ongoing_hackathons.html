@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Live Hackathons | UniSkill Nexus</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: Arial, sans-serif;
+    background: #e8e8e8;
+    min-height: 100vh;
+}
+
+.container { display: flex; }
+
+.sidebar {
+    width: 200px;
+    background: #f4a896;
+    min-height: 100vh;
+    padding: 20px;
+    flex-shrink: 0;
+}
+
+.sidebar h2 { margin-bottom: 30px; font-size: 18px; }
+
+.sidebar a {
+    display: block;
+    background: white;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+.sidebar a:hover { background: #ffe0da; }
+
+.main { flex: 1; padding: 40px; }
+
+.page-title { font-size: 28px; font-weight: bold; color: #222; margin-bottom: 6px; }
+.page-subtitle { color: #777; font-size: 14px; margin-bottom: 25px; }
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #555;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* Live pulse animation */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+.live-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #e74c3c;
+    border-radius: 50%;
+    margin-right: 5px;
+    animation: pulse 1.5s infinite;
+}
+
+.live-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.live-card {
+    background: white;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.live-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.live-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.live-badge {
+    display: inline-flex;
+    align-items: center;
+    background: #ffd4d4;
+    color: #7a0a0a;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.tag-badge {
+    display: inline-block;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.live-card h3 { font-size: 17px; color: #222; margin-bottom: 8px; }
+.live-card p { font-size: 13px; color: #666; margin-bottom: 5px; }
+
+.ends-date {
+    font-size: 13px;
+    color: #e74c3c;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.apply-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #f4a896;
+    color: black;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+    transition: background 0.2s;
+}
+
+.apply-btn:hover { background: #e8917f; }
+
+.no-live {
+    background: white;
+    border-radius: 14px;
+    padding: 40px;
+    text-align: center;
+    color: #888;
+    font-size: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+/* Always available platforms */
+.platforms-section { margin-top: 10px; }
+
+.platforms-section h2 {
+    font-size: 18px;
+    color: #222;
+    margin-bottom: 6px;
+}
+
+.platforms-section p {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+}
+
+.platform-card {
+    background: white;
+    border-radius: 12px;
+    padding: 18px;
+    text-decoration: none;
+    color: black;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-top: 4px solid #f4a896;
+    transition: transform 0.2s;
+    text-align: center;
+}
+
+.platform-card:hover { transform: translateY(-3px); }
+
+.platform-card .picon { font-size: 28px; margin-bottom: 8px; }
+.platform-card h4 { font-size: 14px; color: #222; margin-bottom: 4px; }
+.platform-card p { font-size: 12px; color: #777; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="sidebar">
+        <h2>👤 Student</h2>
+        <a href="/dashboard">🏠 Dashboard</a>
+        <a href="/skills">🧠 Skills</a>
+        <a href="/projects">📁 Projects</a>
+        <a href="/motivation">🔥 Motivation</a>
+        <a href="/hackathons">🏆 Hackathons</a>
+        <a href="/ai-mentor">🤖 AI Mentor</a>
+        <a href="/internships">💼 Internships</a>
+    </div>
+
+    <div class="main">
+
+        <a href="/hackathons" class="back-link">← Back to Hackathons</a>
+        <div class="page-title">🔴 Live Hackathons Right Now</div>
+        <div class="page-subtitle">These hackathons are currently open and accepting applications!</div>
+
+        {% if live_hackathons %}
+        <div class="live-cards">
+            {% for h in live_hackathons %}
+            <div class="live-card" style="border-left: 5px solid {{ h.color }};">
+                <div class="live-header">
+                    <span class="live-badge"><span class="live-dot"></span> LIVE</span>
+                    <span class="tag-badge" style="background: {{ h.color }};">{{ h.tag }}</span>
+                </div>
+                <h3>{{ h.name }}</h3>
+                <p>🏢 Platform: <strong>{{ h.platform }}</strong></p>
+                <p class="ends-date">⏰ Ends: {{ h.end.strftime('%d %B %Y') }}</p>
+                <a href="{{ h.url }}" target="_blank" class="apply-btn">Apply Now →</a>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% else %}
+        <div class="no-live">
+            <p style="font-size:40px; margin-bottom:15px;">😴</p>
+            <p>No live hackathons right now.</p>
+            <p style="font-size:14px; margin-top:8px;">Check the platforms below to find upcoming ones!</p>
+        </div>
+        {% endif %}
+
+        <!-- Always available platforms -->
+        <div class="platforms-section">
+            <h2>🌐 Find More Hackathons Here</h2>
+            <p>These platforms always have hackathons running — check them regularly!</p>
+
+            <div class="platforms-grid">
+                <a href="https://devfolio.co/hackathons" target="_blank" class="platform-card">
+                    <div class="picon">💻</div>
+                    <h4>Devfolio</h4>
+                    <p>India's top hackathon platform</p>
+                </a>
+                <a href="https://unstop.com/hackathons" target="_blank" class="platform-card">
+                    <div class="picon">🏆</div>
+                    <h4>Unstop</h4>
+                    <p>Competitions & hackathons</p>
+                </a>
+                <a href="https://www.hackerearth.com/challenges/hackathon/" target="_blank" class="platform-card">
+                    <div class="picon">⚡</div>
+                    <h4>HackerEarth</h4>
+                    <p>Company-sponsored hackathons</p>
+                </a>
+                <a href="https://mlh.io/seasons/2026/events" target="_blank" class="platform-card">
+                    <div class="picon">🌍</div>
+                    <h4>MLH</h4>
+                    <p>International student hackathons</p>
+                </a>
+                <a href="https://www.kaggle.com/competitions" target="_blank" class="platform-card">
+                    <div class="picon">📊</div>
+                    <h4>Kaggle</h4>
+                    <p>Data science competitions</p>
+                </a>
+                <a href="https://dare2compete.com" target="_blank" class="platform-card">
+                    <div class="picon">🎯</div>
+                    <h4>Dare2Compete</h4>
+                    <p>Student competitions platform</p>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

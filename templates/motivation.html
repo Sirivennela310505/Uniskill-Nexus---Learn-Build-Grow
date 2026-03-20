@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stay Motivated | UniSkill Nexus</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #e8e8e8;
+            min-height: 100vh;
+        }
+
+        .container { display: flex; }
+
+        .sidebar {
+            width: 200px;
+            background: #f4a896;
+            min-height: 100vh;
+            padding: 20px;
+            flex-shrink: 0;
+        }
+
+        .sidebar h2 { margin-bottom: 30px; font-size: 18px; }
+
+        .sidebar a {
+            display: block;
+            background: white;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 10px;
+            text-decoration: none;
+            color: black;
+            font-weight: 500;
+        }
+
+        .sidebar a:hover { background: #ffe0da; }
+
+        .main { flex: 1; padding: 40px; }
+
+        /* Header */
+        .page-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 6px;
+        }
+
+        .page-subtitle {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        /* Tab buttons */
+        .tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            border-radius: 10px;
+            border: 2px solid #f4a896;
+            background: white;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            color: #555;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: #f4a896;
+            color: black;
+        }
+
+        /* Sections */
+        .section { display: none; }
+        .section.active { display: block; }
+
+        /* Daily quote banner */
+        .daily-quote {
+            background: linear-gradient(135deg, #f4a896, #f9c784);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(244,168,150,0.3);
+        }
+
+        .daily-quote .label {
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: white;
+            opacity: 0.8;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .daily-quote .quote-text {
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .daily-quote .quote-author {
+            font-size: 14px;
+            color: white;
+            opacity: 0.85;
+        }
+
+        /* Quote cards grid */
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .quote-card {
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            border-left: 5px solid #f4a896;
+            position: relative;
+            transition: transform 0.2s;
+        }
+
+        .quote-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+
+        .quote-mark {
+            font-size: 40px;
+            color: #f4a896;
+            opacity: 0.4;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .quote-card .text {
+            font-size: 15px;
+            color: #333;
+            line-height: 1.7;
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .quote-card .author {
+            font-size: 13px;
+            color: #f4a896;
+            font-weight: bold;
+        }
+
+        /* Story cards */
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        .story-card {
+            background: white;
+            border-radius: 14px;
+            padding: 25px 28px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            border-top: 5px solid #f4a896;
+            transition: transform 0.2s;
+        }
+
+        .story-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+
+        .story-card h3 {
+            font-size: 17px;
+            color: #222;
+            margin-bottom: 15px;
+        }
+
+        .story-card p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.9;
+        }
+
+        .story-card .lesson {
+            margin-top: 15px;
+            padding: 10px 14px;
+            background: #fff8f7;
+            border-left: 3px solid #f4a896;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #444;
+            font-style: italic;
+        }
+
+        /* Tips section */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .tip-card {
+            background: white;
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .tip-icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .tip-card h3 {
+            font-size: 15px;
+            color: #222;
+            margin-bottom: 8px;
+        }
+
+        .tip-card p {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .section-label {
+            font-size: 13px;
+            font-weight: bold;
+            color: #f4a896;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>👤 Student</h2>
+        <a href="/dashboard">🏠 Dashboard</a>
+        <a href="/skills">🧠 Skills</a>
+        <a href="/projects">📁 Projects</a>
+        <a href="/motivation">🔥 Motivation</a>
+        <a href="/hackathons">🏆 Hackathons</a>
+        <a href="/ai-mentor">🤖 AI Mentor</a>
+        <a href="/internships">💼 Internships</a>
+    </div>
+
+    <!-- Main -->
+    <div class="main">
+
+        <div class="page-title">🔥 Stay Motivated</div>
+        <div class="page-subtitle">Your daily dose of inspiration — quotes, stories and tips for B.Tech students</div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('quotes', this)">💬 Quotes</button>
+            <button class="tab-btn" onclick="showTab('stories', this)">📖 Stories</button>
+            <button class="tab-btn" onclick="showTab('tips', this)">💡 Study Tips</button>
+        </div>
+
+        <!-- QUOTES SECTION -->
+        <div class="section active" id="quotes">
+
+            <!-- Daily quote banner -->
+            <div class="daily-quote" id="dailyQuoteBanner">
+                <div class="label">✨ Quote of the Day</div>
+                <div class="quote-text" id="dailyQuoteText">Loading...</div>
+                <div class="quote-author" id="dailyQuoteAuthor"></div>
+            </div>
+
+            <div class="section-label">📚 All Quotes for B.Tech Students</div>
+
+            <div class="quotes-grid">
+
+                <div class="quote-card">
+                    <div class="quote-mark">"</div>
+                    <div class="text">Your degree gives you eligibility. Your skills give you power.</div>
+                    <div class="author">— UniSkill Nexus</div>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-mark">"</div>
+                    <div class="text">Don't watch the clock; do what it does. Keep going.</div>
+                    <div class="author">— Sam Levenson</div>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-mark">"</div>
+                    <div class="text">The expert in anything was once a beginner.</div>
+                    <div class="author">— Helen Hayes</div>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-mark">"</div>
+                    <div class="text">Code is like humor. When you have to explain it, it's bad.</div>
+                    <div class="author">— Cory House</div>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-mark">"</div>
+                    <div class="text">It does not matter how slowly you go, as long as you do not stop.</div>
+                    <div class="author">— Confucius</div>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-mark">"</div>
+                    <div class="text">First, solve the problem. Then, write the code.</div>
+                    <div class="author">— John Johnson</div>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-mark">"</div>
+                    <div class="text">Success is not final, failure is not fatal: it is the courage to continue that counts.</div>
+                    <div class="author">— Winston Churchill</div>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-mark">"</div>
+                    <div class="text">The only way to do great work is to love what you do.</div>
+                    <div class="author">— Steve Jobs</div>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-mark">"</div>
+                    <div class="text">Consistency is more important than perfection. Show up every day.</div>
+                    <div class="author">— Unknown</div>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-mark">"</div>
+                    <div class="text">Your parents wake up early so you can sleep. Wake up and make them proud.</div>
+                    <div class="author">— UniSkill Nexus</div>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-mark">"</div>
+                    <div class="text">A bug in your code is just a feature waiting to be understood.</div>
+                    <div class="author">— Developer Humor</div>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-mark">"</div>
+                    <div class="text">Backlogs are not the end. They are just a delay. Clear them one by one.</div>
+                    <div class="author">— UniSkill Nexus</div>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-mark">"</div>
+                    <div class="text">Hard work beats talent when talent doesn't work hard.</div>
+                    <div class="author">— Tim Notke</div>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-mark">"</div>
+                    <div class="text">Every line of code you write today is an investment in your future.</div>
+                    <div class="author">— UniSkill Nexus</div>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-mark">"</div>
+                    <div class="text">Dream big. Start small. Act now.</div>
+                    <div class="author">— Robin Sharma</div>
+                </div>
+
+                <div class="quote-card">
+                    <div class="quote-mark">"</div>
+                    <div class="text">Confusion means your brain is learning. Keep going.</div>
+                    <div class="author">— UniSkill Nexus</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- STORIES SECTION -->
+        <div class="section" id="stories">
+
+            <div class="section-label">📖 Real Stories to Inspire You</div>
+
+            <div class="stories-grid">
+
+                <div class="story-card">
+                    <h3>👨‍👩‍👦 Parents' Silent Struggle</h3>
+                    <p>
+                        A boy complained about studying every day.<br><br>
+                        He never noticed his father waking up at 5 AM 🌅<br>
+                        Working 12 hours without rest 😓<br>
+                        His mother saving every single rupee 💰<br><br>
+                        One day he saw his father crying silently after paying fees.<br>
+                        He realized — <strong>"My success is their only dream."</strong><br><br>
+                        From that night, he never wasted a single hour again. 💪
+                    </p>
+                    <div class="lesson">💡 Lesson: Your hard work is the biggest gift to your parents.</div>
+                </div>
+
+                <div class="story-card">
+                    <h3>📚 The Backbench Student</h3>
+                    <p>
+                        He always sat on the last bench.<br>
+                        Teachers ignored him 😔<br>
+                        Friends laughed at him 😒<br><br>
+                        But every night at 11 PM, while others slept —<br>
+                        He opened his laptop and studied silently 🌙<br><br>
+                        One year later, his name topped the placement list 🏆<br>
+                        The same people who laughed were now asking for his help.
+                    </p>
+                    <div class="lesson">💡 Lesson: Work in silence. Let success make the noise.</div>
+                </div>
+
+                <div class="story-card">
+                    <h3>🔥 Failure Is Not the End</h3>
+                    <p>
+                        She prepared for 6 months for one exam.<br>
+                        Studied every day, slept less, sacrificed fun 📖<br><br>
+                        Results came — she failed 💔<br>
+                        Cried for days. Confidence shattered.<br><br>
+                        But she wiped her tears and started again — slowly 🐢<br>
+                        Step by step. Day by day.<br><br>
+                        Next year she cleared it with distinction 🌟
+                    </p>
+                    <div class="lesson">💡 Lesson: Failure didn't stop her. Giving up would have.</div>
+                </div>
+
+                <div class="story-card">
+                    <h3>🚶 One Step Every Day</h3>
+                    <p>
+                        A 2nd year student felt completely lost.<br>
+                        No skills, no direction, no motivation 😕<br><br>
+                        One day he decided — just 30 minutes of coding daily.<br>
+                        Nothing more, nothing less ⏱️<br><br>
+                        In 6 months he built his first project.<br>
+                        In 1 year he got his first internship.<br>
+                        In 2 years he got placed at a dream company ✨
+                    </p>
+                    <div class="lesson">💡 Lesson: 30 minutes every day beats 5 hours once a week.</div>
+                </div>
+
+                <div class="story-card">
+                    <h3>💻 The Student Who Had No Laptop</h3>
+                    <p>
+                        He came from a village. No laptop, no WiFi at home 🏠<br><br>
+                        Every day he went to the college lab after hours.<br>
+                        Coded on free online compilers on his phone 📱<br><br>
+                        Faculty said — "You can't compete with city students."<br><br>
+                        2 years later, he got a package of 12 LPA 💼<br>
+                        The highest in his batch.
+                    </p>
+                    <div class="lesson">💡 Lesson: Excuses are for those who don't want it enough.</div>
+                </div>
+
+                <div class="story-card">
+                    <h3>🎯 The 3-Backlog Student</h3>
+                    <p>
+                        3rd year. 3 backlogs. Everyone called him a failure 😔<br><br>
+                        His relatives stopped believing in him.<br>
+                        Even he stopped believing in himself for a while.<br><br>
+                        But one professor said:<br>
+                        <strong>"Backlogs don't decide your future. Your next step does."</strong><br><br>
+                        He cleared all 3. Then got an internship. Then a job 🎉
+                    </p>
+                    <div class="lesson">💡 Lesson: Your past results don't define your future efforts.</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- STUDY TIPS SECTION -->
+        <div class="section" id="tips">
+
+            <div class="section-label">💡 Practical Study Tips for B.Tech Students</div>
+
+            <div class="tips-grid">
+
+                <div class="tip-card">
+                    <div class="tip-icon">⏰</div>
+                    <h3>Study in Blocks</h3>
+                    <p>Study for 45 minutes, take a 10-minute break. Your brain retains more this way.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">📵</div>
+                    <h3>Phone Away</h3>
+                    <p>Keep your phone in another room while studying. Even face-down reduces focus by 20%.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">📝</div>
+                    <h3>Write, Don't Just Read</h3>
+                    <p>Writing notes by hand improves memory 3x compared to just reading or watching.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">🌙</div>
+                    <h3>Sleep is Not Lazy</h3>
+                    <p>7-8 hours of sleep helps your brain consolidate what you learned. Don't skip it.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">🎯</div>
+                    <h3>One Goal Per Day</h3>
+                    <p>Set one clear goal each morning. "Today I will finish linked lists." Small wins add up.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">🔁</div>
+                    <h3>Revise After 24 Hours</h3>
+                    <p>Revise what you learned within 24 hours. This doubles the chances of remembering it.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">💻</div>
+                    <h3>Build While You Learn</h3>
+                    <p>Don't just watch tutorials. Build something small every week. Doing beats watching.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">🤝</div>
+                    <h3>Teach Others</h3>
+                    <p>Explain what you learned to a friend. Teaching is the best test of understanding.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">📊</div>
+                    <h3>Track Progress</h3>
+                    <p>Keep a simple daily log of what you studied. Seeing progress keeps you motivated.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-icon">🌅</div>
+                    <h3>Morning = Best Time</h3>
+                    <p>Try studying difficult topics in the morning when your brain is fresh and focused.</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    // Tab switching
+    function showTab(tabId, btn) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        btn.classList.add('active');
+    }
+
+    // Show random daily quote in banner
+    const quotes = [
+        { text: "Your degree gives you eligibility. Your skills give you power.", author: "— UniSkill Nexus" },
+        { text: "Consistency is more important than perfection. Show up every day.", author: "— Unknown" },
+        { text: "Every line of code you write today is an investment in your future.", author: "— UniSkill Nexus" },
+        { text: "The expert in anything was once a beginner.", author: "— Helen Hayes" },
+        { text: "Hard work beats talent when talent doesn't work hard.", author: "— Tim Notke" },
+        { text: "Dream big. Start small. Act now.", author: "— Robin Sharma" },
+        { text: "It does not matter how slowly you go, as long as you do not stop.", author: "— Confucius" },
+        { text: "Your parents wake up early so you can sleep. Wake up and make them proud.", author: "— UniSkill Nexus" },
+    ];
+
+    // Pick quote based on day so it changes daily
+    const today = new Date().getDay();
+    const q = quotes[today % quotes.length];
+    document.getElementById('dailyQuoteText').textContent = '"' + q.text + '"';
+    document.getElementById('dailyQuoteAuthor').textContent = q.author;
+</script>
+
+</body>
+</html>

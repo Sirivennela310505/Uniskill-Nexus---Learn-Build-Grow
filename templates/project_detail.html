@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smart Attendance System | UniSkill Nexus</title>
+  <link rel="stylesheet" href="/static/style.css">
+
+  <style>
+    body {
+      background: #f4f6f9;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 17px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .section p, .section li {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .start-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 14px 30px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      font-size: 18px;
+      border-radius: 30px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: 0.3s;
+      border: none;
+    }
+
+    .start-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .refs {
+      display: none;
+      margin-top: 30px;
+      background: #f8f9ff;
+      padding: 25px;
+      border-radius: 12px;
+    }
+
+    .refs a {
+      display: block;
+      margin: 8px 0;
+      color: #4a5bdc;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .refs a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>📸 Smart Attendance System using Face Recognition (Java)</h1>
+  <p class="subtitle">
+    An AI-based system that automatically marks attendance by identifying faces using computer vision.
+  </p>
+
+  <!-- ABOUT PROJECT -->
+  <div class="section">
+    <h2>📘 Project Description</h2>
+    <p>
+      The Smart Attendance System using Face Recognition is designed to automate the traditional
+      attendance process by identifying students through facial features.
+      The system captures live images using a camera, compares them with stored face data,
+      and marks attendance only for recognized individuals.
+      This reduces proxy attendance, saves time, and improves accuracy.
+    </p>
+  </div>
+
+  <!-- HOW TO START -->
+  <div class="section">
+    <h2>🚀 How to Start</h2>
+    <ul>
+      <li>Understand the working of face detection and recognition</li>
+      <li>Set up Java and required libraries (OpenCV)</li>
+      <li>Design the basic UI and data flow</li>
+      <li>Implement face recognition logic</li>
+      <li>Store and manage attendance records</li>
+    </ul>
+  </div>
+
+  <!-- ROADMAP -->
+  <div class="section">
+    <h2>🧭 Project Roadmap</h2>
+    <ul>
+      <li>Design application flow and UI</li>
+      <li>Capture face images using camera</li>
+      <li>Train and recognize faces</li>
+      <li>Connect attendance data to database</li>
+      <li>Test, debug, and finalize</li>
+    </ul>
+  </div>
+
+  <!-- START BUTTON -->
+  <button class="start-btn" onclick="showRefs()">▶ Start Project</button>
+
+  <!-- REFERENCES -->
+  <div class="refs" id="references">
+    <h2>🔗 Learning Resources & References</h2>
+    <a href="https://github.com/search?q=face+recognition+java" target="_blank">
+      🔹 Java Face Recognition GitHub Projects
+    </a>
+    <a href="https://opencv.org/" target="_blank">
+      🔹 OpenCV Official Documentation
+    </a>
+    <a href="https://www.youtube.com/results?search_query=java+face+recognition+opencv" target="_blank">
+      🔹 Video Tutorials (Java + OpenCV)
+    </a>
+  </div>
+
+</div>
+
+<script>
+  function showRefs() {
+    document.getElementById("references").style.display = "block";
+    document.getElementById("references").scrollIntoView({ behavior: "smooth" });
+  }
+</script>
+
+</body>
+</html>

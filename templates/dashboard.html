@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>UniSkill Nexus - Dashboard</title>
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #e8e8e8;
+}
+
+.container {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 200px;
+    background: #f4a896;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+.sidebar a {
+    display: block;
+    background: white;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+.sidebar a:hover {
+    background: #ffe0da;
+}
+
+/* Main */
+.main {
+    flex: 1;
+    padding: 40px;
+}
+
+.header {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #222;
+}
+
+/* Info Cards */
+.card {
+    background: white;
+    padding: 25px 30px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.card h3 {
+    margin: 0 0 10px;
+    font-size: 17px;
+}
+
+.card p {
+    margin: 0;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Live Hackathons */
+.live-section {
+    margin-top: 10px;
+}
+
+.live-section h3 {
+    font-size: 17px;
+    margin: 0 0 15px;
+}
+
+.live-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.live-card {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+    flex: 1;
+    min-width: 200px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.live-tag {
+    display: inline-block;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.live-card h4 {
+    margin: 6px 0 4px;
+    font-size: 15px;
+}
+
+.live-card p {
+    margin: 2px 0;
+    color: #666;
+    font-size: 13px;
+}
+
+.live-card a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 7px 14px;
+    background: #f4a896;
+    color: black;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.live-card a:hover {
+    background: #e8917f;
+}
+
+.no-live {
+    color: #888;
+    font-style: italic;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Sidebar -->
+ <div class="sidebar">
+    <h2>👤 Student</h2>
+    <a href="/dashboard">🏠 Dashboard</a>
+    <a href="/skills">🧠 Skills</a>
+    <a href="/projects">📁 Projects</a>
+    <a href="/motivation">🔥 Motivation</a>
+    <a href="/hackathons">🏆 Hackathons</a>
+    <a href="/ai-mentor">🤖 AI Mentor</a>
+    <a href="/internships">💼 Internships</a>
+    <a href="/resume-tips">📄 Resume Tips</a>
+    <a href="/jobs">💼 Job Portals</a>
+</div>
+
+  <!-- Main Content -->
+  <div class="main">
+
+    <div class="header">Welcome to UniSkill Nexus</div>
+
+    <!-- Original 3 Cards -->
+    <div class="card">
+      <h3>📘 Learn Skills First</h3>
+      <p>Select a skill and follow a clear roadmap from beginner to advanced.</p>
+    </div>
+
+    <div class="card">
+      <h3>🌟 Daily Motivation</h3>
+      <p>"Your degree gives eligibility, your skills give power."
+         When you feel demotivated, visit Motivation to relax and refocus.</p>
+    </div>
+
+    <div class="card">
+      <h3>🚀 Hackathon Ideas</h3>
+      <p>Explore and participate in multiple hackathons through this app
+         and apply your skills to real-world problems.</p>
+    </div>
+
+    <!-- NEW: Live Hackathons -->
+    <div class="card live-section">
+      <h3>🔴 Live Hackathons Right Now</h3>
+
+      {% if live_hackathons %}
+      <div class="live-cards">
+        {% for h in live_hackathons %}
+        <div class="live-card" style="border-left: 5px solid {{ h.color }};">
+          <span class="live-tag" style="background: {{ h.color }};">{{ h.tag }}</span>
+          <h4>{{ h.name }}</h4>
+          <p>Platform: <strong>{{ h.platform }}</strong></p>
+          <p>Ends: <strong>{{ h.end.strftime('%d %b %Y') }}</strong></p>
+          <a href="{{ h.url }}" target="_blank">Register Now →</a>
+        </div>
+        {% endfor %}
+      </div>
+
+      {% else %}
+      <p class="no-live">🚀 No live hackathons right now. Check back soon!</p>
+      {% endif %}
+
+    </div>
+
+  </div>
+  <!-- End Main -->
+
+</div>
+<!-- End Container -->
+
+</body>
+</html>

@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Job Portals | UniSkill Nexus</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: Arial, sans-serif;
+    background: #e8e8e8;
+    min-height: 100vh;
+}
+
+.container { display: flex; }
+
+.sidebar {
+    width: 200px;
+    background: #f4a896;
+    min-height: 100vh;
+    padding: 20px;
+    flex-shrink: 0;
+}
+
+.sidebar h2 { margin-bottom: 30px; font-size: 18px; }
+
+.sidebar a {
+    display: block;
+    background: white;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+.sidebar a:hover { background: #ffe0da; }
+
+.main { flex: 1; padding: 40px; }
+
+.page-title { font-size: 28px; font-weight: bold; color: #222; margin-bottom: 6px; }
+.page-subtitle { color: #777; font-size: 14px; margin-bottom: 25px; }
+
+/* Search */
+.search-bar {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+    font-size: 15px;
+    outline: none;
+    margin-bottom: 25px;
+    transition: border-color 0.2s;
+}
+
+.search-bar:focus { border-color: #f4a896; }
+
+/* Filter buttons */
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.filter-btn {
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: 2px solid #f4a896;
+    background: white;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    color: #555;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: #f4a896;
+    color: black;
+}
+
+/* Section label */
+.section-label {
+    font-size: 13px;
+    font-weight: bold;
+    color: #f4a896;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    margin-top: 10px;
+}
+
+/* Portal cards */
+.portals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.portal-card {
+    background: white;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-top: 4px solid #f4a896;
+    text-decoration: none;
+    color: black;
+    display: block;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.portal-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.portal-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.portal-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.portal-card h3 { font-size: 16px; color: #222; margin-bottom: 3px; }
+
+.category-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+}
+
+.portal-card p {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.portal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.portal-tag {
+    background: #f0f0f0;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    color: #555;
+}
+
+.visit-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #f4a896;
+    color: black;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.portal-card:hover .visit-btn { background: #e8917f; }
+
+/* Tips box */
+.tips-box {
+    background: white;
+    border-radius: 14px;
+    padding: 25px 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-left: 5px solid #f4a896;
+    margin-top: 10px;
+}
+
+.tips-box h2 { font-size: 18px; color: #222; margin-bottom: 16px; }
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+}
+
+.tip-item {
+    background: #fff8f7;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.6;
+}
+
+.no-results {
+    text-align: center;
+    color: #888;
+    padding: 40px;
+    font-size: 16px;
+    display: none;
+    background: white;
+    border-radius: 14px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="sidebar">
+        <h2>👤 Student</h2>
+        <a href="/dashboard">🏠 Dashboard</a>
+        <a href="/skills">🧠 Skills</a>
+        <a href="/projects">📁 Projects</a>
+        <a href="/motivation">🔥 Motivation</a>
+        <a href="/hackathons">🏆 Hackathons</a>
+        <a href="/ai-mentor">🤖 AI Mentor</a>
+        <a href="/internships">💼 Internships</a>
+        <a href="/resume-tips">📄 Resume Tips</a>
+        <a href="/jobs">💼 Job Portals</a>
+    </div>
+
+    <div class="main">
+
+        <div class="page-title">💼 Job Portals</div>
+        <div class="page-subtitle">All the best job and internship platforms for B.Tech students — in one place!</div>
+
+        <!-- Search -->
+        <input
+            type="text"
+            class="search-bar"
+            id="searchBar"
+            placeholder="🔍 Search portals (fresher, IT, government...)"
+            onkeyup="filterPortals()"
+        >
+
+        <!-- Filters -->
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterCategory('all', this)">All</button>
+            <button class="filter-btn" onclick="filterCategory('fresher', this)">🎓 Fresher Jobs</button>
+            <button class="filter-btn" onclick="filterCategory('internship', this)">🌟 Internships</button>
+            <button class="filter-btn" onclick="filterCategory('government', this)">🏛️ Government</button>
+            <button class="filter-btn" onclick="filterCategory('global', this)">🌍 Global</button>
+            <button class="filter-btn" onclick="filterCategory('tech', this)">💻 Tech Specific</button>
+        </div>
+
+        <!-- Fresher Jobs -->
+        <div class="section-label" id="label-fresher">🎓 Best for Freshers</div>
+        <div class="portals-grid" id="grid-fresher">
+
+            <a href="https://www.naukri.com" target="_blank" class="portal-card" data-category="fresher">
+                <div class="portal-header">
+                    <div class="portal-icon" style="background:#fff0ed;">💼</div>
+                    <div>
+                        <h3>Naukri.com</h3>
+                        <span class="category-badge" style="background:#f4a896;">Fresher</span>
+                    </div>
+                </div>
+                <p>India's largest job portal with millions of fresher listings. Create profile and apply directly.</p>
+                <div class="portal-tags">
+                    <span class="portal-tag">IT Jobs</span>
+                    <span class="portal-tag">Fresher</span>
+                    <span class="portal-tag">All Domains</span>
+                </div>
+                <span class="visit-btn">Visit Portal →</span>
+            </a>
+
+            <a href="https://www.shine.com" target="_blank" class="portal-card" data-category="fresher">
+                <div class="portal-header">
+                    <div class="portal-icon" style="background:#fff0ed;">⭐</div>
+                    <div>
+                        <h3>Shine.com</h3>
+                        <span class="category-badge" style="background:#f4a896;">Fresher</span>
+                    </div>
+                </div>
+                <p>Popular job portal with dedicated fresher section and resume building tools.</p>
+                <div class="portal-tags">
+                    <span class="portal-tag">Fresher</span>
+                    <span class="portal-tag">IT</span>
+                    <span class="portal-tag">Resume Builder</span>
+                </div>
+                <span class="visit-btn">Visit Portal →</span>
+            </a>
+
+            <a href="https://www.freshersworld.com" target="_blank" class="portal-card" data-category="fresher">
+                <div class="portal-header">
+                    <div class="portal-icon" style="background:#fff0ed;">🌍</div>
+                    <div>
+                        <h3>FreshersWorld</h3>
+                        <span class="category-badge" style="background:#f4a896;">Fresher</span>
+                    </div>
+                </div>
+                <p>Exclusively for freshers — jobs, off-campus drives, walkins all in one place.</p>
+                <div class="portal-tags">
+                    <span class="portal-tag">Fresher Only</span>
+                    <span class="portal-tag">Off Campus</span>
+                    <span class="portal-tag">Walk-ins</span>
+                </div>
+                <span class="visit-btn">Visit Portal →</span>
+            </a>
+
+            <a href="https://www.foundit.in" target="_blank" class="portal-card" data-category="fresher">
+                <div class="portal-header">
+                    <div class="portal-icon" style="background:#fff0ed;">🔍</div>
+                    <div>
+                        <h3>Foundit (Monster)</h3>
+                        <span class="category-badge" style="background:#f4a896;">Fresher</span>
+                    </div>
+                </div>
+                <p>Formerly Monster India — large job portal with good fresher and entry-level listings.</p>
+                <div class="portal-tags">
+                    <span class="portal-tag">Entry Level</span>
+                    <span class="portal-tag">IT</span>
+                    <span class="portal-tag">All Domains</span>
+                </div>
+                <span class="visit-btn">Visit Portal →</span>
+            </a>
+
+        </div>
+
+        <!-- Internships -->
+        <div class="section-label" id="label-internship">🌟 Internship Platforms</div>
+        <div class="portals-grid" id="grid-internship">
+
+            <a href="https://internshala.com" target="_blank" class="portal-card" data-category="internship">
+                <div class="portal-header">
+                    <div class="portal-icon" style="background:#e8f5e9;">🌱</div>
+                    <div>
+                        <h3>Internshala</h3>
+                        <span class="category-badge" style="background:#4CAF50;">Internship</span>
+                    </div>
+                </div>
+                <p>India's #1 internship platform. Thousands of paid and free internships updated daily.</p>
+                <div class="portal-tags">
+                    <span class="portal-tag">Paid Internships</span>
+                    <span class="portal-tag">Work From Home</span>
+                    <span class="portal-tag">All Fields</span>
+                </div>
+                <span class="visit-btn">Visit Portal →</span>
+            </a>
+
+            <a href="https://unstop.com" target="_blank" class="portal-card" data-category="internship">
+                <div class="portal-header">
+                    <div class="portal-icon" style="background:#e8f5e9;">🏆</div>
+                    <div>
+                        <h3>Unstop</h3>
+                        <span class="category-badge" style="background:#4CAF50;">Internship</span>
+                    </div>
+                </div>
+                <p>Competitions, hackathons and internships for students from top companies.</p>
+                <div class="portal-tags">
+                    <span class="portal-tag">Competitions</span>
+                    <span class="portal-tag">Internships</span>
+                    <span class="portal-tag">Top Companies</span>
+                </div>
+                <span class="visit-btn">Visit Portal →</span>
+            </a>
+
+            <a href="https://www.letsintern.com" target="_blank" class="portal-card" data-category="internship">
+                <div class="portal-header">
+                    <div class="portal-icon" style="background:#e8f5e9;">📋</div>
+                    <div>
+                        <h3>LetsIntern</h3>
+                        <span class="category-badge" style="background:#4CAF50;">Internship</span>
+                    </div>
+                </div>
+                <p>Student-focused internship platform with verified listings from real companies.</p>
+                <div class="portal-tags">
+                    <span class="portal-tag">Student Focus</span>
+                    <span class="portal-tag">Verified</span>
+                    <span class="portal-tag">All Fields</span>
+                </div>
+                <span class="visit-btn">Visit Portal →</span>
+            </a>
+
+            <a href="https://www.linkedin.com/jobs" target="_blank" class="portal-card" data-category="internship">
+                <div class="portal-header">
+                    <div class="portal-icon" style="background:#e8f5e9;">🔗</div>
+                    <div>
+                        <h3>LinkedIn Jobs</h3>
+                        <span class="category-badge" style="background:#4CAF50;">Internship</span>
+                    </div>
+                </div>
+                <p>World's largest professional network. Filter for internships and entry-level roles easily.</p>
+                <div class="portal-tags">
+                    <span class="portal-tag">Global</span>
+                    <span class="portal-tag">Networking</span>
+                    <span class="portal-tag">Remote</span>
+                </div>
+                <span class="visit-btn">Visit Portal →</span>
+            </a>
+
+        </div>
+
+        <!-- Government Jobs -->
+        <div class="section-label" id="label-government">🏛️ Government Job Portals</div>
+        <div class="portals-grid" id="grid-government">
+
+            <a href="https://www.sarkariresult.com" target="_blank" class="portal-card" data-category="government">
+                <div class="portal-header">
+                    <div class="portal-icon" style="background:#fff8e1;">🏛️</div>
+                    <div>
+                        <h3>Sarkari Result</h3>
+                        <span class="category-badge" style="background:#f39c12;">Government</span>
+                    </div>
+                </div>
+                <p>Latest government job notifications, results and admit cards all in one place.</p>
+                <div class="portal-tags">
+                    <span class="portal-tag">Govt Jobs</span>
+                    <span class="portal-tag">Results</span>
+                    <span class="portal-tag">Admit Cards</span>
+                </div>
+                <span class="visit-btn">Visit Portal →</span>
+            </a>
+
+            <a href="https://www.ncs.gov.in" target="_blank" class="portal-card" data-category="government">
+                <div class="portal-header">
+                    <div class="portal-icon" style="background:#fff8e1;">🇮🇳</div>
+                    <div>
+                        <h3>NCS Portal</h3>
+                        <span class="category-badge" style="background:#f39c12;">Government</span>
+                    </div>
+                </div>
+                <p>National Career Service Portal by Government of India — official job listings.</p>
+                <div class="portal-tags">
+                    <span class="portal-tag">Official</span>
+                    <span class="portal-tag">Central Govt</span>
+                    <span class="portal-tag">Free</span>
+                </div>
+                <span class="visit-btn">Visit Portal →</span>
+            </a>
+
+            <a href="https://www.upsc.gov.in" target="_blank" class="portal-card" data-category="government">
+                <div class="portal-header">
+                    <div class="portal-icon" style="background:#fff8e1;">📜</div>
+                    <div>
+                        <h3>UPSC</h3>
+                        <span class="category-badge" style="background:#f39c12;">Government</span>
+                    </div>
+                </div>
+                <p>Union Public Service Commission — for IAS, IPS and other civil service exams.</p>
+                <div class="portal-tags">
+                    <span class="portal-tag">Civil Services</span>
+                    <span class="portal-tag">IAS/IPS</span>
+                    <span class="portal-tag">Central</span>
+                </div>
+                <span class="visit-btn">Visit Portal →</span>
+            </a>
+
+            <a href="https://www.ibps.in" target="_blank" class="portal-card" data-category="government">
+                <div class="portal-header">
+                    <div class="portal-icon" style="background:#fff8e1;">🏦</div>
+                    <div>
+                        <h3>IBPS</h3>
+                        <span class="category-badge" style="background:#f39c12;">Government</span>
+                    </div>
+                </div>
+                <p>Institute of Banking Personnel Selection — bank jobs for graduates.</p>
+                <div class="portal-tags">
+                    <span class="portal-tag">Banking</span>
+                    <span class="portal-tag">PO</span>
+                    <span class="portal-tag">Clerk</span>
+                </div>
+                <span class="visit-btn">Visit Portal →</span>
+            </a>
+
+        </div>
+
+        <!-- Global -->
+        <div class="section-label" id="label-global">🌍 Global Job Platforms</div>
+        <div class="portals-grid" id="grid-global">
+
+            <a href="https://www.indeed.com" target="_blank" class="portal-card" data-category="global">
+                <div class="portal-header">
+                    <div class="portal-icon" style="background:#e3f2fd;">🌐</div>
+                    <div>
+                        <h3>Indeed</h3>
+                        <span class="category-badge" style="background:#2196F3;">Global</span>
+                    </div>
+                </div>
+                <p>World's most visited job site. Search millions of jobs globally including remote roles.</p>
+                <div class="portal-tags">
+                    <span class="portal-tag">Global</span>
+                    <span class="portal-tag">Remote</span>
+                    <span class="portal-tag">All Levels</span>
+                </div>
+                <span class="visit-btn">Visit Portal →</span>
+            </a>
+
+            <a href="https://www.glassdoor.co.in" target="_blank" class="portal-card" data-category="global">
+                <div class="portal-header">
+                    <div class="portal-icon" style="background:#e3f2fd;">🔍</div>
+                    <div>
+                        <h3>Glassdoor</h3>
+                        <span class="category-badge" style="background:#2196F3;">Global</span>
+                    </div>
+                </div>
+                <p>Jobs + company reviews + salary info. Great for researching companies before applying.</p>
+                <div class="portal-tags">
+                    <span class="portal-tag">Reviews</span>
+                    <span class="portal-tag">Salaries</span>
+                    <span class="portal-tag">Global</span>
+                </div>
+                <span class="visit-btn">Visit Portal →</span>
+            </a>
+
+            <a href="https://wellfound.com" target="_blank" class="portal-card" data-category="global">
+                <div class="portal-header">
+                    <div class="portal-icon" style="background:#e3f2fd;">🚀</div>
+                    <div>
+                        <h3>Wellfound</h3>
+                        <span class="category-badge" style="background:#2196F3;">Global</span>
+                    </div>
+                </div>
+                <p>AngelList for startups — best platform for startup jobs and remote tech roles globally.</p>
+                <div class="portal-tags">
+                    <span class="portal-tag">Startups</span>
+                    <span class="portal-tag">Remote</span>
+                    <span class="portal-tag">Tech</span>
+                </div>
+                <span class="visit-btn">Visit Portal →</span>
+            </a>
+
+            <a href="https://remoteok.com" target="_blank" class="portal-card" data-category="global">
+                <div class="portal-header">
+                    <div class="portal-icon" style="background:#e3f2fd;">🏠</div>
+                    <div>
+                        <h3>RemoteOK</h3>
+                        <span class="category-badge" style="background:#2196F3;">Global</span>
+                    </div>
+                </div>
+                <p>100% remote tech jobs from companies worldwide — perfect for work from home roles.</p>
+                <div class="portal-tags">
+                    <span class="portal-tag">100% Remote</span>
+                    <span class="portal-tag">Tech</span>
+                    <span class="portal-tag">Global</span>
+                </div>
+                <span class="visit-btn">Visit Portal →</span>
+            </a>
+
+        </div>
+
+        <!-- Tech Specific -->
+        <div class="section-label" id="label-tech">💻 Tech-Specific Platforms</div>
+        <div class="portals-grid" id="grid-tech">
+
+            <a href="https://www.hackerrank.com/jobs" target="_blank" class="portal-card" data-category="tech">
+                <div class="portal-header">
+                    <div class="portal-icon" style="background:#f3e5f5;">⚡</div>
+                    <div>
+                        <h3>HackerRank Jobs</h3>
+                        <span class="category-badge" style="background:#9b59b6;">Tech</span>
+                    </div>
+                </div>
+                <p>Solve coding challenges and get hired — many companies recruit directly through HackerRank.</p>
+                <div class="portal-tags">
+                    <span class="portal-tag">Coding Tests</span>
+                    <span class="portal-tag">Tech Jobs</span>
+                    <span class="portal-tag">Global</span>
+                </div>
+                <span class="visit-btn">Visit Portal →</span>
+            </a>
+
+            <a href="https://leetcode.com/jobs" target="_blank" class="portal-card" data-category="tech">
+                <div class="portal-header">
+                    <div class="portal-icon" style="background:#f3e5f5;">🧩</div>
+                    <div>
+                        <h3>LeetCode Jobs</h3>
+                        <span class="category-badge" style="background:#9b59b6;">Tech</span>
+                    </div>
+                </div>
+                <p>Practice DSA and apply to top tech companies directly from LeetCode platform.</p>
+                <div class="portal-tags">
+                    <span class="portal-tag">DSA</span>
+                    <span class="portal-tag">FAANG</span>
+                    <span class="portal-tag">Tech</span>
+                </div>
+                <span class="visit-btn">Visit Portal →</span>
+            </a>
+
+            <a href="https://cutshort.io" target="_blank" class="portal-card" data-category="tech">
+                <div class="portal-header">
+                    <div class="portal-icon" style="background:#f3e5f5;">✂️</div>
+                    <div>
+                        <h3>Cutshort</h3>
+                        <span class="category-badge" style="background:#9b59b6;">Tech</span>
+                    </div>
+                </div>
+                <p>AI-powered tech job platform — matches your skills to relevant job openings automatically.</p>
+                <div class="portal-tags">
+                    <span class="portal-tag">AI Matching</span>
+                    <span class="portal-tag">Startups</span>
+                    <span class="portal-tag">Tech</span>
+                </div>
+                <span class="visit-btn">Visit Portal →</span>
+            </a>
+
+            <a href="https://www.geeksforgeeks.org/jobs" target="_blank" class="portal-card" data-category="tech">
+                <div class="portal-header">
+                    <div class="portal-icon" style="background:#f3e5f5;">👨‍💻</div>
+                    <div>
+                        <h3>GFG Jobs</h3>
+                        <span class="category-badge" style="background:#9b59b6;">Tech</span>
+                    </div>
+                </div>
+                <p>GeeksforGeeks job portal — specifically for developers with coding practice integrated.</p>
+                <div class="portal-tags">
+                    <span class="portal-tag">Developer</span>
+                    <span class="portal-tag">India</span>
+                    <span class="portal-tag">Tech</span>
+                </div>
+                <span class="visit-btn">Visit Portal →</span>
+            </a>
+
+        </div>
+
+        <!-- Tips -->
+        <div class="tips-box">
+            <h2>💡 Job Application Tips for B.Tech Students</h2>
+            <div class="tips-grid">
+                <div class="tip-item">⭐ Apply to <strong>10-15 jobs per day</strong> — volume matters for freshers</div>
+                <div class="tip-item">⭐ <strong>Customize your resume</strong> for each job using their keywords</div>
+                <div class="tip-item">⭐ <strong>Follow up</strong> after 5 days if no reply via LinkedIn or email</div>
+                <div class="tip-item">⭐ <strong>LinkedIn is important</strong> — keep profile 100% complete with photo</div>
+                <div class="tip-item">⭐ <strong>Practice DSA</strong> on LeetCode daily — most companies test this</div>
+                <div class="tip-item">⭐ Don't apply only to big companies — <strong>startups are great</strong> for learning</div>
+                <div class="tip-item">⭐ <strong>Off-campus drives</strong> on FreshersWorld often have less competition</div>
+                <div class="tip-item">⭐ <strong>Never lie</strong> on your resume — be honest about your skill level</div>
+            </div>
+        </div>
+
+        <div class="no-results" id="noResults">
+            😔 No portals found. Try a different search!
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    let currentCategory = 'all';
+
+    function filterCategory(cat, btn) {
+        currentCategory = cat;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        filterPortals();
+    }
+
+    function filterPortals() {
+        const input = document.getElementById('searchBar').value.toLowerCase();
+        const cards = document.querySelectorAll('.portal-card');
+        let visible = 0;
+
+        cards.forEach(card => {
+            const text = card.innerText.toLowerCase();
+            const cat = card.dataset.category;
+            const matchSearch = text.includes(input);
+            const matchCat = currentCategory === 'all' || cat === currentCategory;
+
+            if (matchSearch && matchCat) {
+                card.style.display = 'block';
+                visible++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Hide/show section labels
+        ['fresher','internship','government','global','tech'].forEach(cat => {
+            const grid = document.getElementById('grid-' + cat);
+            const label = document.getElementById('label-' + cat);
+            if (grid && label) {
+                const anyVisible = [...grid.querySelectorAll('.portal-card')]
+                    .some(c => c.style.display !== 'none');
+                label.style.display = anyVisible ? 'block' : 'none';
+                grid.style.display = anyVisible ? 'grid' : 'none';
+            }
+        });
+
+        document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+    }
+</script>
+
+</body>
+</html>

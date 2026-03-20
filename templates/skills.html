@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Skills | UniSkill Nexus</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="sidebar">
+  <a href="/dashboard">⬅ Dashboard</a>
+</div>
+
+<div class="content">
+  <h1>📚 Skills Roadmap</h1>
+  <p class="subtitle">Choose a skill to learn from zero to hero</p>
+
+  <div class="skills-grid">
+    {% for skill in skills %}
+    <a href="/skills/{{ skill }}" class="skill-card">
+      <h3>{{ skill.capitalize() }}</h3>
+      <p>View roadmap & resources</p>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Resume Tips | UniSkill Nexus</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: Arial, sans-serif;
+    background: #e8e8e8;
+    min-height: 100vh;
+}
+
+.container { display: flex; }
+
+.sidebar {
+    width: 200px;
+    background: #f4a896;
+    min-height: 100vh;
+    padding: 20px;
+    flex-shrink: 0;
+}
+
+.sidebar h2 { margin-bottom: 30px; font-size: 18px; }
+
+.sidebar a {
+    display: block;
+    background: white;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+.sidebar a:hover { background: #ffe0da; }
+
+.main { flex: 1; padding: 40px; }
+
+.page-title { font-size: 28px; font-weight: bold; color: #222; margin-bottom: 6px; }
+.page-subtitle { color: #777; font-size: 14px; margin-bottom: 30px; }
+
+/* Score banner */
+.score-banner {
+    background: linear-gradient(135deg, #f4a896, #f9c784);
+    border-radius: 16px;
+    padding: 25px 30px;
+    margin-bottom: 25px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.score-banner h3 { font-size: 18px; margin-bottom: 6px; }
+.score-banner p { font-size: 13px; opacity: 0.9; }
+
+.score-circle {
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.score-circle .num { font-size: 22px; font-weight: bold; color: #f4a896; }
+.score-circle .label { font-size: 10px; color: #888; }
+
+/* Section */
+.section-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #f4a896;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    margin-top: 30px;
+}
+
+/* Checklist */
+.checklist {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.check-item {
+    background: white;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+}
+
+.check-item:hover { border-color: #f4a896; }
+.check-item.checked { background: #f0fff0; border-color: #4CAF50; }
+
+.check-box {
+    width: 22px;
+    height: 22px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.2s;
+    margin-top: 1px;
+}
+
+.check-item.checked .check-box {
+    background: #4CAF50;
+    border-color: #4CAF50;
+    color: white;
+}
+
+.check-text { font-size: 14px; color: #333; line-height: 1.5; }
+.check-text.checked-text { text-decoration: line-through; color: #888; }
+
+/* Tip cards */
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+.tip-card {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-left: 5px solid #f4a896;
+    transition: transform 0.2s;
+}
+
+.tip-card:hover { transform: translateY(-3px); }
+.tip-card .tip-num { font-size: 11px; font-weight: bold; color: #f4a896; letter-spacing: 1px; margin-bottom: 6px; }
+.tip-card h4 { font-size: 15px; color: #222; margin-bottom: 8px; }
+.tip-card p { font-size: 13px; color: #555; line-height: 1.6; }
+
+/* Mistakes */
+.mistakes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+    margin-bottom: 10px;
+}
+
+.mistake-card {
+    background: white;
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    border-left: 5px solid #e74c3c;
+}
+
+.mistake-card .wrong { font-size: 13px; color: #e74c3c; margin-bottom: 8px; }
+.mistake-card .right { font-size: 13px; color: #27ae60; }
+.mistake-card strong { font-size: 14px; display: block; margin-bottom: 5px; color: #222; }
+
+/* Templates */
+.templates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 10px;
+}
+
+.template-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    text-decoration: none;
+    color: black;
+    border-top: 4px solid #f4a896;
+    transition: transform 0.2s;
+    display: block;
+}
+
+.template-card:hover { transform: translateY(-3px); }
+.template-card .ticon { font-size: 32px; margin-bottom: 10px; }
+.template-card h4 { font-size: 14px; color: #222; margin-bottom: 4px; }
+.template-card p { font-size: 12px; color: #777; }
+
+/* Progress bar */
+.progress-bar-wrap {
+    background: #eee;
+    border-radius: 10px;
+    height: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #f4a896, #4CAF50);
+    border-radius: 10px;
+    transition: width 0.4s;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="sidebar">
+        <h2>👤 Student</h2>
+        <a href="/dashboard">🏠 Dashboard</a>
+        <a href="/skills">🧠 Skills</a>
+        <a href="/projects">📁 Projects</a>
+        <a href="/motivation">🔥 Motivation</a>
+        <a href="/hackathons">🏆 Hackathons</a>
+        <a href="/ai-mentor">🤖 AI Mentor</a>
+        <a href="/internships">💼 Internships</a>
+        <a href="/resume-tips">📄 Resume Tips</a>
+    </div>
+
+    <div class="main">
+
+        <div class="page-title">📄 Resume Tips</div>
+        <div class="page-subtitle">Build a resume that gets you shortlisted — everything in one place!</div>
+
+        <!-- Score Banner -->
+        <div class="score-banner">
+            <div>
+                <h3>📊 Resume Checklist Tracker</h3>
+                <p>Check off items as you complete them — track your resume score!</p>
+                <div class="progress-bar-wrap" style="width:300px;">
+                    <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
+                </div>
+            </div>
+            <div class="score-circle">
+                <span class="num" id="scoreNum">0%</span>
+                <span class="label">Score</span>
+            </div>
+        </div>
+
+        <!-- CHECKLIST -->
+        <div class="section-title">✅ Resume Checklist</div>
+        <div class="checklist" id="checklist">
+
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-text">Full name, phone number and email at the top</div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-text">LinkedIn profile link added</div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-text">GitHub profile link added</div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-text">Education section with CGPA mentioned</div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-text">At least 2 projects with tech stack listed</div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-text">Skills section with relevant technologies</div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-text">Internship or work experience added (if any)</div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-text">Certifications or online courses listed</div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-text">Achievements or awards section added</div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-text">Resume is exactly 1 page long</div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-text">No spelling or grammar mistakes</div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-text">Saved as PDF before sending</div>
+            </div>
+
+        </div>
+
+        <!-- TIPS -->
+        <div class="section-title">💡 Pro Tips to Make Your Resume Stand Out</div>
+        <div class="tips-grid">
+
+            <div class="tip-card">
+                <div class="tip-num">TIP 01</div>
+                <h4>Use Action Verbs</h4>
+                <p>Start every bullet point with strong verbs like "Built", "Developed", "Designed", "Implemented", "Automated". Never say "I did" or "I worked on".</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-num">TIP 02</div>
+                <h4>Quantify Everything</h4>
+                <p>Instead of "Made a website faster" write "Reduced page load time by 40%". Numbers make your resume stand out immediately.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-num">TIP 03</div>
+                <h4>Tailor for Each Job</h4>
+                <p>Read the job description carefully. Add keywords from it into your resume. ATS systems filter resumes based on keyword matching.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-num">TIP 04</div>
+                <h4>Keep it 1 Page</h4>
+                <p>As a fresher, keep your resume to exactly 1 page. Recruiters spend only 6-10 seconds scanning. Make every line count.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-num">TIP 05</div>
+                <h4>Projects > Certificates</h4>
+                <p>One good project beats 10 certificates. Describe what you built, what tech you used and what problem it solved.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-num">TIP 06</div>
+                <h4>Add GitHub Links</h4>
+                <p>Always link your GitHub profile and individual project repos. Recruiters DO check them — make sure code is clean and has README.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-num">TIP 07</div>
+                <h4>Clean Simple Format</h4>
+                <p>Avoid fancy colors, tables, photos and graphics. Use a clean black and white format. Most ATS systems can't read fancy designs.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-num">TIP 08</div>
+                <h4>Use Standard Fonts</h4>
+                <p>Use Arial, Calibri or Times New Roman at 10-12pt. Avoid decorative fonts. Your content matters more than how fancy it looks.</p>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-num">TIP 09</div>
+                <h4>Summary Section</h4>
+                <p>Add a 2-3 line summary at the top: "B.Tech CSE student with skills in Python, ML and web development. Looking for internship roles."</p>
+            </div>
+
+        </div>
+
+        <!-- COMMON MISTAKES -->
+        <div class="section-title">❌ Common Resume Mistakes & How to Fix Them</div>
+        <div class="mistakes-grid">
+
+            <div class="mistake-card">
+                <strong>Objective Statement</strong>
+                <div class="wrong">❌ "To get a job in a good company and grow professionally"</div>
+                <div class="right">✅ Write a specific summary: "Python developer seeking ML internship roles"</div>
+            </div>
+
+            <div class="mistake-card">
+                <strong>Weak Project Description</strong>
+                <div class="wrong">❌ "Made a website using HTML and CSS"</div>
+                <div class="right">✅ "Built a responsive portfolio website using HTML, CSS, JS deployed on GitHub Pages"</div>
+            </div>
+
+            <div class="mistake-card">
+                <strong>Listing Irrelevant Skills</strong>
+                <div class="wrong">❌ "MS Word, MS Paint, Typing"</div>
+                <div class="right">✅ "Python, Flask, SQL, Git, Machine Learning, REST APIs"</div>
+            </div>
+
+            <div class="mistake-card">
+                <strong>Wrong Email ID</strong>
+                <div class="wrong">❌ "coolboy123@gmail.com"</div>
+                <div class="right">✅ "firstname.lastname@gmail.com" — looks professional</div>
+            </div>
+
+            <div class="mistake-card">
+                <strong>No GitHub / LinkedIn</strong>
+                <div class="wrong">❌ Missing profile links completely</div>
+                <div class="right">✅ Always add LinkedIn and GitHub — they get checked by 80% of recruiters</div>
+            </div>
+
+            <div class="mistake-card">
+                <strong>Sending as Word File</strong>
+                <div class="wrong">❌ Sending resume as .docx file</div>
+                <div class="right">✅ Always save and send as PDF — formatting stays perfect everywhere</div>
+            </div>
+
+        </div>
+
+        <!-- FREE TEMPLATES -->
+        <div class="section-title">🎨 Free Resume Templates for Students</div>
+        <div class="templates-grid">
+
+            <a href="https://www.overleaf.com/gallery/tagged/cv" target="_blank" class="template-card">
+                <div class="ticon">📝</div>
+                <h4>Overleaf LaTeX</h4>
+                <p>Professional templates used by top students</p>
+            </a>
+
+            <a href="https://flowcv.com/" target="_blank" class="template-card">
+                <div class="ticon">🎨</div>
+                <h4>FlowCV</h4>
+                <p>Free modern resume builder online</p>
+            </a>
+
+            <a href="https://www.canva.com/resumes/templates/" target="_blank" class="template-card">
+                <div class="ticon">✏️</div>
+                <h4>Canva Resume</h4>
+                <p>Beautiful designs easy to customize</p>
+            </a>
+
+            <a href="https://resumake.io/" target="_blank" class="template-card">
+                <div class="ticon">💻</div>
+                <h4>Resumake</h4>
+                <p>Developer-focused clean templates</p>
+            </a>
+
+            <a href="https://www.resumebuilder.com/" target="_blank" class="template-card">
+                <div class="ticon">🚀</div>
+                <h4>Resume Builder</h4>
+                <p>Step by step resume creation</p>
+            </a>
+
+            <a href="https://jsonresume.org/" target="_blank" class="template-card">
+                <div class="ticon">🐙</div>
+                <h4>JSON Resume</h4>
+                <p>Developer style resume from JSON</p>
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    const total = document.querySelectorAll('.check-item').length;
+
+    function toggleCheck(item) {
+        item.classList.toggle('checked');
+        const textEl = item.querySelector('.check-text');
+        textEl.classList.toggle('checked-text');
+        const box = item.querySelector('.check-box');
+        box.textContent = item.classList.contains('checked') ? '✓' : '';
+        updateScore();
+    }
+
+    function updateScore() {
+        const checked = document.querySelectorAll('.check-item.checked').length;
+        const percent = Math.round((checked / total) * 100);
+        document.getElementById('scoreNum').textContent = percent + '%';
+        document.getElementById('progressBar').style.width = percent + '%';
+    }
+</script>
+
+</body>
+</html>

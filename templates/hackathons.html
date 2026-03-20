@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hackathons | UniSkill Nexus</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: Arial, sans-serif;
+    background: #e8e8e8;
+    min-height: 100vh;
+}
+
+.container { display: flex; }
+
+.sidebar {
+    width: 200px;
+    background: #f4a896;
+    min-height: 100vh;
+    padding: 20px;
+    flex-shrink: 0;
+}
+
+.sidebar h2 { margin-bottom: 30px; font-size: 18px; }
+
+.sidebar a {
+    display: block;
+    background: white;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+.sidebar a:hover { background: #ffe0da; }
+
+.main { flex: 1; padding: 40px; }
+
+.page-title { font-size: 28px; font-weight: bold; color: #222; margin-bottom: 6px; }
+.page-subtitle { color: #777; font-size: 14px; margin-bottom: 35px; }
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.path-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    text-decoration: none;
+    color: black;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-top: 5px solid #f4a896;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: block;
+}
+
+.path-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.path-card .icon { font-size: 36px; margin-bottom: 15px; }
+.path-card h2 { font-size: 20px; margin-bottom: 10px; color: #222; }
+.path-card p { font-size: 14px; color: #666; line-height: 1.6; margin-bottom: 15px; }
+
+.path-card .arrow {
+    display: inline-block;
+    background: #f4a896;
+    color: black;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.tip-box {
+    background: white;
+    border-radius: 14px;
+    padding: 25px 30px;
+    margin-top: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-left: 5px solid #f4a896;
+}
+
+.tip-box h3 { font-size: 17px; margin-bottom: 15px; color: #222; }
+
+.tips-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+}
+
+.tip-item {
+    background: #fff8f7;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.5;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="sidebar">
+        <h2>👤 Student</h2>
+        <a href="/dashboard">🏠 Dashboard</a>
+        <a href="/skills">🧠 Skills</a>
+        <a href="/projects">📁 Projects</a>
+        <a href="/motivation">🔥 Motivation</a>
+        <a href="/hackathons">🏆 Hackathons</a>
+        <a href="/ai-mentor">🤖 AI Mentor</a>
+        <a href="/internships">💼 Internships</a>
+    </div>
+
+    <div class="main">
+
+        <div class="page-title">🏆 Hackathons</div>
+        <div class="page-subtitle">Everything you need to find, prepare and win hackathons — all in one place!</div>
+
+        <div class="cards-grid">
+
+            <a href="/hackathons/ongoing" class="path-card">
+                <div class="icon">🔴</div>
+                <h2>Live Hackathons</h2>
+                <p>Currently open hackathons accepting applications right now. Don't miss the deadlines!</p>
+                <span class="arrow">View Live →</span>
+            </a>
+
+            <a href="/hackathons/best" class="path-card">
+                <div class="icon">🚀</div>
+                <h2>Best Hackathon Ideas</h2>
+                <p>20+ winning-level project ideas with tech stack, steps and full guidance for B.Tech students.</p>
+                <span class="arrow">Explore Ideas →</span>
+            </a>
+
+            <a href="/hackathons/beginner" class="path-card">
+                <div class="icon">🌱</div>
+                <h2>Beginner Friendly</h2>
+                <p>Never done a hackathon? Start here! Simple ideas you can build in 24-48 hours confidently.</p>
+                <span class="arrow">Start Here →</span>
+            </a>
+
+        </div>
+
+        <!-- Hackathon Tips -->
+        <div class="tip-box">
+            <h3>💡 Quick Hackathon Tips for B.Tech Students</h3>
+            <div class="tips-list">
+                <div class="tip-item">⭐ Register early — slots fill up fast</div>
+                <div class="tip-item">⭐ Team of 3-4 works best — divide frontend, backend, presentation</div>
+                <div class="tip-item">⭐ Focus on solving a real problem — judges love impact</div>
+                <div class="tip-item">⭐ Build an MVP in first 12 hours, polish later</div>
+                <div class="tip-item">⭐ Prepare a 3-minute demo — practice it multiple times</div>
+                <div class="tip-item">⭐ Participation itself builds resume and confidence</div>
+                <div class="tip-item">⭐ Use GitHub from day one — judges check your commits</div>
+                <div class="tip-item">⭐ Don't aim for perfection — aim for a working demo</div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
