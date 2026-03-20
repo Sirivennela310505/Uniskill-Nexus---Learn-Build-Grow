@@ -160,4 +160,4 @@ This project is licensed under the MIT License — see the LICENSE file for deta
 
 ---
 
-⭐ If this project helped you, please give it a star on GitHub!
+⭐ If this project helped you, please give it a star on GitHub! 
